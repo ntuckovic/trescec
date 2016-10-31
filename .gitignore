@@ -1,2 +1,3 @@
 *.pyc
-settings/dev.py
+trescec/settings/dev.py
+trescec/media

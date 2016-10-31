@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
+
+class Product(models.Model):
+    name = models.CharField(verbose_name=_('Name'), max_length=500)
+    short_description = models.TextField(verbose_name=_('Short Description'))
+    long_description = models.TextField(verbose_name=_('Long description'))
+    image = models.ImageField(verbose_name=_('Image'), upload_to='products/')
+    thumbnail = ImageSpecField(source='image',
+                               processors=[ResizeToFill(100, 100)],
+                               format='JPEG',
+                               options={'quality': 100})
+    created = models.DateTimeField(
+        verbose_name=_('Created'), auto_now_add=True)
+    modified = models.DateTimeField(verbose_name=_('Modified'), auto_now=True)
+    price = models.DecimalField(
+        verbose_name=_('Price'), max_digits=10, decimal_places=2)
+
+    class Meta:
+        verbose_name = _('Product')
+
+    def __str__(self):
+        return self.name
