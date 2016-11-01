@@ -11,9 +11,9 @@ from imagekit.processors import ResizeToFill
 
 class Product(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=500)
-    short_description = models.TextField(verbose_name=_('Short Description'))
-    long_description = models.TextField(verbose_name=_('Long description'))
-    image = models.ImageField(verbose_name=_('Image'), upload_to='products/')
+    short_description = models.TextField(verbose_name=_('Short Description'), blank=True, null=True)
+    long_description = models.TextField(verbose_name=_('Long description'), blank=True, null=True)
+    image = models.ImageField(verbose_name=_('Image'), upload_to='products/', blank=True, null=True)
     thumbnail = ImageSpecField(source='image',
                                processors=[ResizeToFill(100, 100)],
                                format='JPEG',
