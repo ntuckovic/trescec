@@ -23,6 +23,7 @@ class Product(models.Model):
     modified = models.DateTimeField(verbose_name=_('Modified'), auto_now=True)
     price = models.DecimalField(
         verbose_name=_('Price'), max_digits=10, decimal_places=2)
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
 
     class Meta:
         verbose_name = _('Product')

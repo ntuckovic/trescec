@@ -24,5 +24,4 @@ ckeditor_config['toolbarGroups'] = [
     {'name': 'about', 'groups': ['about']}
 ]
 
-
 ckeditor_config['removeButtons'] = 'Flash,ShowBlocks,About,Scayt,TextField,Radio,Checkbox,Form,Textarea,Button,Select,HiddenField,ImageButton,SelectAll,Find,Replace,Print,Preview,NewPage,Save,Templates,CreateDiv,Language,BidiRtl,BidiLtr'

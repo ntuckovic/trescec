@@ -24,11 +24,12 @@ class DashboardAdmin(admin.ModelAdmin):
     form = PageForm
     search_fields = ['name']
     product_thumbnail = AdminThumbnail(image_field='thumbnail')
-    list_display = ['name', 'product_thumbnail', 'price']
+    list_display = ['name', 'product_thumbnail', 'price', 'active']
     image_display = AdminThumbnail(image_field='image')
     image_display.short_description = _('Image')
     readonly_fields = ['image_display', 'created', 'modified']
     fields = (
+        'active',
         'name',
         'price',
         'short_description',
