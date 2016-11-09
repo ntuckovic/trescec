@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///sass/sass/custom.scss"],"names":[],"mappings":"AAAA;EACI,aAAa,EAChB","file":"css/style.css","sourcesContent":[".test {\n    height: 100%;\n}\n\n\n\n// WEBPACK FOOTER //\n// webpack:///sass/sass/custom.scss"],"sourceRoot":""}

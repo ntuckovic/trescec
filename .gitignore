@@ -1,3 +1,4 @@
 *.pyc
 trescec/settings/dev.py
 trescec/media
+trescec/static/dev/node_modules

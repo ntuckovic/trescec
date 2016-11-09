@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 from django.contrib import admin
 
-from .models import Order, OrderItem
+from .models import Order, OrderItem, ShoppingCart
 
 
 @admin.register(Order)
@@ -22,4 +22,12 @@ class OrderItem(admin.ModelAdmin):
     list_display = [
         'order',
         'product'
+    ]
+
+
+@admin.register(ShoppingCart)
+class ShoppingCartAdmin(admin.ModelAdmin):
+    list_display = [
+        'hash',
+        'created'
     ]

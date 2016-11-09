@@ -2,12 +2,28 @@
 
 from __future__ import unicode_literals
 
+import time
+import hashlib
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 
 
 phone_regex = RegexValidator(regex=r'^\d{9,15}$', message="Phone number must be entered in the format: '999999999'. Up to 15 digits allowed.")
+
+
+def createHash():
+    """This function generate 10 character long hash"""
+    hash = hashlib.sha1()
+    hash.update(str(time.time()))
+    return hash.hexdigest()[:-10]
+
+
+class ShoppingCart(models.Model):
+    created = models.DateTimeField(
+        verbose_name=_('Created'), auto_now_add=True)
+    hash = models.CharField(max_length=10, default=createHash, unique=True)
 
 
 class Order(models.Model):
@@ -37,7 +53,7 @@ class Order(models.Model):
         validators=[phone_regex], verbose_name=_('Phone Number'), max_length=15)
 
     class Meta:
-        verbose_name = _('Order')
+        verbose_name = _('Shop Order')
 
     def __unicode__(self):
         return self.display_name
@@ -48,9 +64,15 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey('orders.Order')
-    product = models.ForeignKey('products.Product')
-    amount = models.IntegerField(_('Amount'))
+    order = models.ForeignKey('orders.Order', verbose_name=_('Order'), blank=True, null=True)
+    shopping_cart = models.ForeignKey(
+        'orders.ShoppingCart',
+        verbose_name=_('Shopping Cart'),
+        blank=True,
+        null=True
+    )
+    product = models.ForeignKey('products.Product', verbose_name=_('Product'))
+    amount = models.PositiveIntegerField(verbose_name=_('Amount'))
 
     class Meta:
         verbose_name = _('Order Item')
