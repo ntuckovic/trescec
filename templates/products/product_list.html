@@ -1,13 +1,35 @@
 {% extends 'master.html' %}
 
+{% load i18n %}
+
 {% block main %}
     <h1>Products</h1>
-    <ul>
-    {% for product in object_list %}
-        <li>{{ product.name }} - {{ product.price }}</li>
-    {% empty %}
-        <li>No products yet.</li>
-    {% endfor %}
-    </ul>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                {% for product in object_list %}
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="#" class="thumbnail">
+                                    <img class="img-responsive" src="{{ product.medium_thumbnail.url }}"  />
+                                </a>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="list-group-item-heading">{{ product.name }} - {{ product.price }}kn</h4>
+                                <p class="list-group-item-text">{{ product.short_description }}</p>
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                {% empty %}
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans "No available products!" %}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     {{ block.super }}
 {% endblock main %}
