@@ -2,14 +2,16 @@
 
 {% load i18n %}
 
+{% block title_extra %} | {% trans "Products" %}{% endblock title_extra %}
+
 {% block main %}
-    <h1>Products</h1>
+    <h1>{% trans "Products" %}</h1>
 
     <div class="row">
         <div class="col-md-12">
             <div class="list-group">
                 {% for product in object_list %}
-                    <div class="list-group-item">
+                    <div class="list-group-item js-product">
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="#" class="thumbnail">
@@ -17,8 +19,57 @@
                                 </a>
                             </div>
                             <div class="col-md-9">
-                                <h4 class="list-group-item-heading">{{ product.name }} - {{ product.price }}kn</h4>
-                                <p class="list-group-item-text">{{ product.short_description }}</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h4 class="list-group-item-heading">{{ product.name }}</h4>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-8 control-label">
+                                                            {% trans 'Price:' %}
+                                                        </label>
+                                                        <label class="col-sm-4 control-label">
+                                                            {{ product.price }}kn
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="amount{{ product.id }}" class="col-sm-8 control-label">
+                                                            {% trans 'Amount:' %}
+                                                        </label>
+                                                        <div class="col-sm-4">
+                                                            <select id="amount" name="amount" class="form-control js-amount">
+                                                                {% for i in amount_range %}
+                                                                     <option value="{{ i }}">
+                                                                         {{ i }}
+                                                                     </option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">
+                                                            <input type="hidden" name="id" id="id" value="{{ product.id }}"/>
+                                                            <input type="hidden" name="price" id="price" value="{{ product.price }}"/>
+
+                                                            <button type="submit" class="btn btn-success pull-right">
+                                                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                                                {% trans "Add to cart" %}
+                                                            </button>
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <p class="list-group-item-text mb5">{{ product.short_description }}</p>
+                                        <a href="#" class="btn btn-primary btn-sm">
+                                            {% trans "More about product" %}
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                       </a>

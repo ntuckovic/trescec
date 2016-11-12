@@ -1,3 +1,70 @@
-.test {
-    height: 100%;
+$helper_classes: (
+
+    properties: (m, p),
+
+    variants: (
+
+        t: ( 1 0 0 0 ),
+        r: ( 0 1 0 0 ),
+        b: ( 0 0 1 0 ),
+        l: ( 0 0 0 1 ),
+        v: ( 1 0 1 0 ),
+        h: ( 0 1 0 1 )
+    ),
+
+    values: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50)
+
+);
+
+$types: map-get($helper_classes, properties);
+$variants: map-get($helper_classes, variants);
+$values: map-get($helper_classes, values);
+
+@each $property in $types {
+    @each $variant, $props in $variants {
+        @each $value in $values {
+
+            .#{$property}#{$variant}#{$value} {
+
+                $top: nth($props, 1);
+                @if ($top == 1) {
+                    @if ($property == m){
+                        margin-top: $top * $value + px !important;
+                    } @else {
+                        padding-top: $top * $value + px !important;
+                    }
+                }
+
+
+                $right: nth($props, 2);
+                @if ($right == 1) {
+                    @if ($property == m){
+                        margin-right: $right * $value + px !important;
+                    } @else {
+                        padding-right: $right * $value + px !important;
+                    }
+                }
+
+
+                $bottom: nth($props, 3);
+                @if ($bottom == 1) {
+                    @if ($property == m){
+                        margin-bottom: $bottom * $value + px !important;
+                    } @else {
+                        padding-bottom: $bottom * $value + px !important;
+                    }
+                }
+
+
+                $left: nth($props, 4);
+                @if ($left == 1) {
+                    @if ($property == m){
+                        margin-left: $left * $value + px !important;
+                    } @else {
+                        padding-left: $left * $value + px !important;
+                    }
+                }
+            }
+        }
+    }
 }
