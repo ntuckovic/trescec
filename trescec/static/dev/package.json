@@ -17,9 +17,11 @@
     "babel-preset-stage-0": "^6.16.0",
     "bootstrap": "^3.3.7",
     "deep-get-set": "^1.0.0",
+    "form-serialize": "^0.7.1",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
+    "react-kit": "^0.1.14",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
