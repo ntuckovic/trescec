@@ -65,6 +65,10 @@
 	
 	var _hasClass2 = _interopRequireDefault(_hasClass);
 	
+	var _fetch_from_server = __webpack_require__(/*! ../react_dumplings/fetch_from_server.jsx */ 178);
+	
+	var _fetch_from_server2 = _interopRequireDefault(_fetch_from_server);
+	
 	__webpack_require__(/*! ../sass/custom.scss */ 172);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -97,19 +101,23 @@
 	    }, {
 	        key: 'submitForm',
 	        value: function submitForm(e) {
+	            var data = (0, _formSerialize2.default)(e.target, { hash: true });
 	            var isProductForm = (0, _hasClass2.default)(e.target, 'js-product-form');
-	            var serialized = (0, _formSerialize2.default)(e.target, { hash: true });
 	
 	            e.preventDefault();
 	
 	            if (isProductForm) {
-	                this.submitProductForm(serialized);
+	                this.submitProductForm(data);
 	            }
 	        }
 	    }, {
 	        key: 'submitProductForm',
 	        value: function submitProductForm(data) {
-	            console.log(data);
+	            _fetch_from_server2.default.post(API_URL.ORDERITEMS_LIST, data, function (data) {
+	                console.log(data);
+	            }, {
+	                "X-CSRFToken": CSRF_TOKEN
+	            });
 	        }
 	    }, {
 	        key: 'render',
@@ -22301,6 +22309,87 @@
 	  }
 	}
 
+
+/***/ },
+/* 178 */
+/*!***********************************************!*\
+  !*** ./react_dumplings/fetch_from_server.jsx ***!
+  \***********************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	/*
+	Example usage:
+	==============
+	import fetchFromServer from 'react-dumplings/fetch_from_server.jsx';
+	
+	fetchFromServer.fetch("http://my-api-link.exmpla", (data) => {
+	    console.log(data);
+	    console.log('jaaj!');
+	});
+	*/
+	
+	var fetchFromServer = {
+	    checkStatus: function checkStatus(response) {
+	        if (response.status >= 200 && response.status < 300) {
+	            return response;
+	        } else {
+	            var error = new Error(response.statusText);
+	            error.response = response;
+	            throw error;
+	        }
+	    },
+	
+	    parseJSON: function parseJSON(response) {
+	        return response.json();
+	    },
+	
+	    mergeHeaders: function mergeHeaders() {
+	        var headers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	
+	        var defaultHeaders = {
+	            'Content-Type': 'application/json'
+	        };
+	
+	        headers = Object.assign(headers, defaultHeaders);
+	
+	        return headers;
+	    },
+	
+	    fetch: function (_fetch) {
+	        function fetch(_x2, _x3) {
+	            return _fetch.apply(this, arguments);
+	        }
+	
+	        fetch.toString = function () {
+	            return _fetch.toString();
+	        };
+	
+	        return fetch;
+	    }(function (url, onSuccess) {
+	        return fetch(url, {
+	            credentials: 'same-origin'
+	        }).then(fetchFromServer.checkStatus).then(fetchFromServer.parseJSON).then(function (data) {
+	            onSuccess(data);
+	        });
+	    }),
+	
+	    post: function post(url, data, onSuccess) {
+	        var headers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	
+	        return fetch(url, {
+	            credentials: 'same-origin',
+	            method: 'POST',
+	            headers: fetchFromServer.mergeHeaders(headers),
+	            body: JSON.stringify(data)
+	        }).then(fetchFromServer.checkStatus).then(fetchFromServer.parseJSON).then(function (data) {
+	            onSuccess(data);
+	        });
+	    }
+	};
+	
+	module.exports = fetchFromServer;
 
 /***/ }
 /******/ ]);

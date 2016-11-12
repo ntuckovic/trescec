@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import serialize from 'form-serialize';
 import hasClass from 'react-kit/hasClass';
+import fetchFromServer from '../react_dumplings/fetch_from_server.jsx';
 
 import '../sass/custom.scss';
 
@@ -19,18 +20,22 @@ class App extends React.Component {
     }
 
     submitForm (e) {
+        let data = serialize(e.target, { hash: true });
         let isProductForm = hasClass(e.target, 'js-product-form');
-        let serialized = serialize(e.target, { hash: true });
 
         e.preventDefault();
 
         if (isProductForm) {
-            this.submitProductForm(serialized);
+            this.submitProductForm(data);
         }
     }
 
     submitProductForm (data) {
-        console.log(data);
+        fetchFromServer.post(API_URL.ORDERITEMS_LIST, data, (data) => {
+            console.log(data);
+        }, {
+            "X-CSRFToken": CSRF_TOKEN
+        });
     }
 
     render () {
