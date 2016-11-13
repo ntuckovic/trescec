@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import serialize from 'form-serialize';
 import hasClass from 'react-kit/hasClass';
 import fetchFromServer from '../react_dumplings/fetch_from_server.jsx';
+import * as Cookies from "js-cookie";
 
 import '../sass/custom.scss';
 
@@ -31,12 +32,13 @@ class App extends React.Component {
     }
 
     submitProductForm (data) {
-        // NProgress.start();
+        const existingShoppingCart = Cookies.get('shopping_cart');
+        data.shopping_cart = existingShoppingCart || false;
 
         fetchFromServer.post(API_URL.ORDERITEMS_LIST, data, (data) => {
-            console.log(data);
-
-            // NProgress.done();
+            if (!existingShoppingCart) {
+                Cookies.set('shopping_cart', data.shopping_cart.hash);
+            }
         }, {
             "X-CSRFToken": CSRF_TOKEN
         });

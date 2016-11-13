@@ -17,13 +17,17 @@ def createHash():
     """This function generate 10 character long hash"""
     hash = hashlib.sha1()
     hash.update(str(time.time()))
-    return hash.hexdigest()[:-10]
+
+    return hash.hexdigest()[:10]
 
 
 class ShoppingCart(models.Model):
     created = models.DateTimeField(
         verbose_name=_('Created'), auto_now_add=True)
     hash = models.CharField(max_length=10, default=createHash, unique=True)
+
+    def __unicode__(self):
+        return self.hash
 
 
 class Order(models.Model):
@@ -78,4 +82,4 @@ class OrderItem(models.Model):
         verbose_name = _('Order Item')
 
     def __str__(self):
-        return '{0} {1}'.format(self.order.display_name, self.product.name)
+        return '{0} {1}'.format(self.order, self.product.name)
