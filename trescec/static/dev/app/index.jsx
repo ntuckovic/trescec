@@ -31,8 +31,12 @@ class App extends React.Component {
     }
 
     submitProductForm (data) {
+        // NProgress.start();
+
         fetchFromServer.post(API_URL.ORDERITEMS_LIST, data, (data) => {
             console.log(data);
+
+            // NProgress.done();
         }, {
             "X-CSRFToken": CSRF_TOKEN
         });

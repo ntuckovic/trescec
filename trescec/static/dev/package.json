@@ -22,6 +22,7 @@
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
     "react-kit": "^0.1.14",
+    "react-nprogress": "^0.1.6",
     "webpack": "^1.13.2",
     "whatwg-fetch": "^1.0.0"
   },

@@ -12,6 +12,7 @@ var config = webpackConfigTool({
     sass_path: SASS_DIR,
     copy_array: [
         { from: 'node_modules/bootstrap/dist', to: 'vendor/bootstrap' },
+        { from: 'node_modules/nprogress', to: 'vendor/nprogress' },
     ]
 });
 
