@@ -17,3 +17,12 @@ class OrderItemSerializer(serializers.ModelSerializer):
             'product',
             'amount'
         )
+
+
+class WriteOrderItemSerializer(OrderItemSerializer):
+    def create(self, validated_data):
+        instance = super(WriteOrderItemSerializer, self).create(validated_data)
+
+        print instance.id
+
+        return instance
