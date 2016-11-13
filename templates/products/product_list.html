@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                         <p class="list-group-item-text mb5">{{ product.short_description|safe }}</p>
-                                        <a href="#" class="btn btn-primary btn-sm">
+                                        <a href="{% url 'products:product_detail' product.id %}" class="btn btn-primary btn-sm">
                                             {% trans "More about product" %}
                                             <span class="glyphicon glyphicon-chevron-right"></span>
                                         </a>
@@ -72,7 +72,6 @@
                                 </div>
                             </div>
                         </div>
-                      </a>
                     </div>
                 {% empty %}
                     <div class="list-group-item">

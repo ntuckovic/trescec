@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load i18n %}
+
 <html>
 
     <head>
@@ -22,6 +24,21 @@
 
     <body>
         <div class="container">
+            {% block header %}
+                <div class="header clearfix">
+                    <nav>
+                        <ul class="nav nav-pills pull-right">
+                            <li role="presentation" class="{% if nav_item == 'home' %}active{% endif %}">
+                                <a href="#">{% trans "Home" %}</a>
+                            </li>
+                            <li role="presentation" class="{% if nav_item == 'product' %}active{% endif %}">
+                                <a href="{% url 'products:product_list' %}">{% trans "Products" %}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <h3 class="text-muted">OPG Treščec</h3>
+                </div>
+            {% endblock header %}
             {% block main %}
                 <div id="app" />
                 <script src="{% static "public/bundle.js" %}" type="text/javascript"></script>

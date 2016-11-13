@@ -4,11 +4,13 @@ from __future__ import unicode_literals
 
 from django.views.generic import ListView, DetailView
 
+from core.views.mixins import NavigationMixin
 from .models import Product
 
 
-class ProductMixin(object):
+class ProductMixin(NavigationMixin, object):
     model = Product
+    nav_item = 'product'
 
     def get_queryset(self):
         qs = super(ProductMixin, self).get_queryset()
