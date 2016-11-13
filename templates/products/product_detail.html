@@ -1,0 +1,16 @@
+{% extends 'master.html' %}
+
+{% load i18n %}
+
+{% block title_extra %} | {{ product.name }}{% endblock title_extra %}
+
+{% block main %}
+    <h1>{{ product.name }}</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock main %}

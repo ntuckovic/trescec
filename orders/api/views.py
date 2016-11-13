@@ -16,5 +16,15 @@ class OrderItemViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
     """
     list_serializer = OrderItemSerializer
     write_serializer = WriteOrderItemSerializer
-    queryset = OrderItem.objects.all()
     permission_classes = []
+
+    def get_queryset(self):
+        shopping_cart = self.request.COOKIES.get('shopping_cart')
+        show_all = self.request.GET.get('show_all')
+
+        if show_all:
+            return OrderItem.objects.all()
+        elif show_all is None and shopping_cart:
+            return OrderItem.objects.filter(shopping_cart__hash=shopping_cart)
+        else:
+            return OrderItem.objects.none()
