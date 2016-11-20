@@ -4,6 +4,7 @@ import serialize from 'form-serialize';
 import hasClass from 'react-kit/hasClass';
 import fetchFromServer from '../react_dumplings/fetch_from_server.jsx';
 import * as Cookies from "js-cookie";
+import $ from "jquery";
 
 import '../sass/custom.scss';
 
@@ -13,14 +14,23 @@ class App extends React.Component {
       super(props);
       this.state = {};
       this.submitForm = this.submitForm.bind(this);
+      this.updateOrderItem = this.updateOrderItem.bind(this);
+      this.deleteOrderItemClicked = this.deleteOrderItemClicked.bind(this);
+
       this.submitProductForm = this.submitProductForm.bind(this);
-      this.inputChanged = this.inputChanged.bind(this);
       this.submitOrderItemForm = this.submitOrderItemForm.bind(this);
     }
 
     componentDidMount () {
         window.addEventListener('submit', this.submitForm);
-        window.addEventListener('change', this.inputChanged);
+        $(".js-update-item").on('change', this.updateOrderItem);
+        $('.js-delete-order-item').on('click', this.deleteOrderItemClicked);
+    }
+
+    componentWillUnmount () {
+        window.removeEventListener('submit', this.submitForm);
+        $(".js-update-item").off('change');
+        $('.js-delete-order-item').off('click');
     }
 
     submitForm (e) {
@@ -51,17 +61,15 @@ class App extends React.Component {
         });
     }
 
-    inputChanged (e) {
-        const formEl = e.target.form;
-        let isOrderItemForm = hasClass(formEl, 'js-order-item-form');
+    updateOrderItem (e) {
         let data, id;
 
-        if (isOrderItemForm) {
-            e.preventDefault();
-            data = serialize(formEl, { hash: true });
-            id = formEl.getAttribute('data-order-item-id');
-            this.submitOrderItemForm(data, id);
-        }
+        e.preventDefault();
+
+        console.log($(e.target));
+        // data = serialize(formEl, { hash: true });
+        // id = formEl.getAttribute('data-order-item-id');
+        // this.submitOrderItemForm(data, id);
     }
 
     submitOrderItemForm (data, id) {
@@ -79,6 +87,14 @@ class App extends React.Component {
         let orderItemPriceSpan = document.querySelector(selector);
 
         orderItemPriceSpan.innerHTML = data.calculated_price;
+    }
+
+    deleteOrderItemClicked (e) {
+        let id;
+
+        e.preventDefault();
+
+        console.log("drek");
     }
 
     render () {
