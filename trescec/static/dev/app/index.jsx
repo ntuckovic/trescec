@@ -62,14 +62,13 @@ class App extends React.Component {
     }
 
     updateOrderItem (e) {
-        let data, id;
+        let $form = $(e.target).parent('form');
+        let data = serialize($form[0], { hash: true });
+        let id = $form.data('order-item-id');
 
         e.preventDefault();
 
-        console.log($(e.target));
-        // data = serialize(formEl, { hash: true });
-        // id = formEl.getAttribute('data-order-item-id');
-        // this.submitOrderItemForm(data, id);
+        this.submitOrderItemForm(data, id);
     }
 
     submitOrderItemForm (data, id) {
@@ -83,18 +82,24 @@ class App extends React.Component {
     }
 
     updateItemTotalPrice (data) {
-        let selector = `.price[data-order-item-id="${data.id}"] .calculated-price`;
-        let orderItemPriceSpan = document.querySelector(selector);
+        const selector = `.price[data-order-item-id="${data.id}"] .calculated-price`;
+        const orderItemPriceSpan = document.querySelector(selector);
 
         orderItemPriceSpan.innerHTML = data.calculated_price;
     }
 
-    deleteOrderItemClicked (e) {
-        let id;
+    deleteOrderItemClicked (e, elem) {
+        let $orderItemTr = $(e.currentTarget).parents(".order-item-tr");
+        let id = $(e.currentTarget).data('order-item-id');
+        let orderItemUrl = `${API_URL.ORDERITEMS_LIST}${id}/`;
 
         e.preventDefault();
 
-        console.log("drek");
+        fetchFromServer.delete(orderItemUrl, (data) => {
+            $orderItemTr.remove()
+        }, {
+            "X-CSRFToken": CSRF_TOKEN
+        });
     }
 
     render () {
