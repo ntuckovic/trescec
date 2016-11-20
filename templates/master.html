@@ -2,6 +2,8 @@
 
 {% load i18n %}
 
+{% load orders_tags %}
+
 <html>
 
     <head>
@@ -40,7 +42,12 @@
                             </li>
                             <li role="presentation" class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
                                 <a href="{% url 'orders:shopping_cart' %}">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span> {% trans "Shopping Cart" %}
+                                    {% get_shopping_cart as shopping_cart %}
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    {% trans "Shopping Cart" %}
+                                    {% if shopping_cart and shopping_cart.items_count %}
+                                    <span class="badge">{{ shopping_cart.items_count }}</span>
+                                    {% endif %}
                                 </a>
                             </li>
                         </ul>

@@ -29,6 +29,10 @@ class ShoppingCart(models.Model):
     def __unicode__(self):
         return self.hash
 
+    @property
+    def items_count(self):
+        return OrderItem.objects.filter(shopping_cart=self).count()
+
 
 class Order(models.Model):
     ORDER_STATUS_CHOICES = (

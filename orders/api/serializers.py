@@ -30,10 +30,10 @@ class OrderItemSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'order',
-            'shopping_cart',
             'product',
             'amount',
-            'calculated_price'
+            'calculated_price',
+            'shopping_cart',
         )
 
 

@@ -56,6 +56,7 @@ class App extends React.Component {
             if (!existingShoppingCart) {
                 Cookies.set('shopping_cart', data.shopping_cart.hash);
             }
+            Cookies.set('shopping_cart_items_count', data.shopping_cart.items_count);
         }, {
             "X-CSRFToken": CSRF_TOKEN
         });
