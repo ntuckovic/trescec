@@ -4,6 +4,10 @@
 
 {% block title_extra %} | {% trans "Products" %}{% endblock title_extra %}
 
+{% block extra_breadcrumb %}
+    <li class="{% if nav_item == 'product' %}active{% endif %}">{% trans "Products" %}</li>
+{% endblock extra_breadcrumb %}
+
 {% block main %}
     <h1>{% trans "Products" %}</h1>
 

@@ -29,15 +29,29 @@
                     <nav>
                         <ul class="nav nav-pills pull-right">
                             <li role="presentation" class="{% if nav_item == 'home' %}active{% endif %}">
-                                <a href="#">{% trans "Home" %}</a>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-home"></span> {% trans "Home" %}
+                                </a>
                             </li>
                             <li role="presentation" class="{% if nav_item == 'product' %}active{% endif %}">
-                                <a href="{% url 'products:product_list' %}">{% trans "Products" %}</a>
+                                <a href="{% url 'products:product_list' %}">
+                                    <span class="glyphicon glyphicon-th-list"></span> {% trans "Products" %}
+                                </a>
+                            </li>
+                            <li role="presentation" class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
+                                <a href="{% url 'orders:shopping_cart' %}">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> {% trans "Shopping Cart" %}
+                                </a>
                             </li>
                         </ul>
                     </nav>
                     <h3 class="text-muted">OPG Treščec</h3>
                 </div>
+                <ol class="breadcrumb">
+                    {% block extra_breadcrumb %}
+
+                    {% endblock extra_breadcrumb %}
+                </ol>
             {% endblock header %}
             {% block main %}
                 <div id="app" />

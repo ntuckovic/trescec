@@ -32,7 +32,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
             'order',
             'shopping_cart',
             'product',
-            'amount'
+            'amount',
+            'calculated_price'
         )
 
 
@@ -59,6 +60,11 @@ class ShoppingCartField(serializers.Field):
 
 class WriteOrderItemSerializer(OrderItemSerializer):
     shopping_cart = ShoppingCartField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        kwargs['partial'] = True
+
+        super(WriteOrderItemSerializer, self).__init__(*args, **kwargs)
 
     def create(self, validated_data):
         existing_order_item = OrderItem.objects.filter(

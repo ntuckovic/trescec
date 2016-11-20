@@ -83,3 +83,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return '{0} {1}'.format(self.order, self.product.name)
+
+    @property
+    def calculated_price(self):
+        return self.amount * self.product.price

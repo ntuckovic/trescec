@@ -4,6 +4,11 @@
 
 {% block title_extra %} | {{ product.name }}{% endblock title_extra %}
 
+{% block extra_breadcrumb %}
+    <li><a href="{% url 'products:product_list' %}">{% trans "Products" %}</a></li>
+    <li class="{% if nav_item == 'product' %}active{% endif %}">{{ product.name }}</li>
+{% endblock extra_breadcrumb %}
+
 {% block main %}
     <h1>{{ product.name }}</h1>
 
