@@ -8,6 +8,7 @@ import hashlib
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
+from django.utils.encoding import python_2_unicode_compatible
 
 
 phone_regex = RegexValidator(regex=r'^\d{9,15}$', message="Phone number must be entered in the format: '999999999'. Up to 15 digits allowed.")
@@ -21,12 +22,13 @@ def createHash():
     return hash.hexdigest()[:10]
 
 
+@python_2_unicode_compatible
 class ShoppingCart(models.Model):
     created = models.DateTimeField(
         verbose_name=_('Created'), auto_now_add=True)
     hash = models.CharField(max_length=10, default=createHash, unique=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.hash
 
     @property
@@ -34,6 +36,7 @@ class ShoppingCart(models.Model):
         return OrderItem.objects.filter(shopping_cart=self).count()
 
 
+@python_2_unicode_compatible
 class Order(models.Model):
     ORDER_STATUS_CHOICES = (
         ('IP', 'In Progress'),
@@ -63,7 +66,7 @@ class Order(models.Model):
     class Meta:
         verbose_name = _('Shop Order')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.display_name
 
     @property
@@ -71,6 +74,7 @@ class Order(models.Model):
         return '{0} {1}'.format(self.first_name, self.last_name)
 
 
+@python_2_unicode_compatible
 class OrderItem(models.Model):
     order = models.ForeignKey('orders.Order', verbose_name=_('Order'), blank=True, null=True)
     shopping_cart = models.ForeignKey(

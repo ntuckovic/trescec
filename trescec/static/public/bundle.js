@@ -591,8 +591,24 @@
 	            }
 	        }
 	    }, {
+	        key: 'updateShoppingCartItemsCount',
+	        value: function updateShoppingCartItemsCount(count) {
+	            Cookies.set('shopping_cart_items_count', count);
+	            (0, _jquery2.default)('.js-shopping-cart-badge').html(count);
+	        }
+	    }, {
+	        key: 'decreaseShoppingCartItemsCount',
+	        value: function decreaseShoppingCartItemsCount() {
+	            var currentCount = Cookies.get('shopping_cart_items_count', 0);
+	            var newCount = currentCount - 1;
+	
+	            this.updateShoppingCartItemsCount(newCount);
+	        }
+	    }, {
 	        key: 'submitProductForm',
 	        value: function submitProductForm(data) {
+	            var _this2 = this;
+	
 	            var existingShoppingCart = Cookies.get('shopping_cart');
 	            data.shopping_cart = existingShoppingCart || false;
 	
@@ -600,7 +616,7 @@
 	                if (!existingShoppingCart) {
 	                    Cookies.set('shopping_cart', data.shopping_cart.hash);
 	                }
-	                Cookies.set('shopping_cart_items_count', data.shopping_cart.items_count);
+	                _this2.updateShoppingCartItemsCount(data.shopping_cart.items_count);
 	            }, {
 	                "X-CSRFToken": CSRF_TOKEN
 	            });
@@ -619,12 +635,12 @@
 	    }, {
 	        key: 'submitOrderItemForm',
 	        value: function submitOrderItemForm(data, id) {
-	            var _this2 = this;
+	            var _this3 = this;
 	
 	            var orderItemUrl = '' + API_URL.ORDERITEMS_LIST + id + '/';
 	
 	            _fetch_from_server2.default.put(orderItemUrl, data, function (data) {
-	                _this2.updateItemTotalPrice(data);
+	                _this3.updateItemTotalPrice(data);
 	            }, {
 	                "X-CSRFToken": CSRF_TOKEN
 	            });
@@ -640,6 +656,8 @@
 	    }, {
 	        key: 'deleteOrderItemClicked',
 	        value: function deleteOrderItemClicked(e, elem) {
+	            var _this4 = this;
+	
 	            var $orderItemTr = (0, _jquery2.default)(e.currentTarget).parents(".order-item-tr");
 	            var id = (0, _jquery2.default)(e.currentTarget).data('order-item-id');
 	            var orderItemUrl = '' + API_URL.ORDERITEMS_LIST + id + '/';
@@ -648,6 +666,7 @@
 	
 	            _fetch_from_server2.default.delete(orderItemUrl, function (data) {
 	                $orderItemTr.remove();
+	                _this4.decreaseShoppingCartItemsCount();
 	            }, {
 	                "X-CSRFToken": CSRF_TOKEN
 	            });

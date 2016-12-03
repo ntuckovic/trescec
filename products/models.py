@@ -7,8 +7,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Product(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=500)
     short_description = models.TextField(verbose_name=_('Short Description'), blank=True, null=True)

@@ -48,6 +48,18 @@ class App extends React.Component {
         }
     }
 
+    updateShoppingCartItemsCount (count) {
+        Cookies.set('shopping_cart_items_count', count);
+        $('.js-shopping-cart-badge').html(count);
+    }
+
+    decreaseShoppingCartItemsCount () {
+        let currentCount = Cookies.get('shopping_cart_items_count', 0);
+        let newCount = currentCount - 1;
+
+        this.updateShoppingCartItemsCount(newCount);
+    }
+
     submitProductForm (data) {
         const existingShoppingCart = Cookies.get('shopping_cart');
         data.shopping_cart = existingShoppingCart || false;
@@ -56,7 +68,7 @@ class App extends React.Component {
             if (!existingShoppingCart) {
                 Cookies.set('shopping_cart', data.shopping_cart.hash);
             }
-            Cookies.set('shopping_cart_items_count', data.shopping_cart.items_count);
+            this.updateShoppingCartItemsCount(data.shopping_cart.items_count)
         }, {
             "X-CSRFToken": CSRF_TOKEN
         });
@@ -98,6 +110,7 @@ class App extends React.Component {
 
         fetchFromServer.delete(orderItemUrl, (data) => {
             $orderItemTr.remove()
+            this.decreaseShoppingCartItemsCount()
         }, {
             "X-CSRFToken": CSRF_TOKEN
         });
