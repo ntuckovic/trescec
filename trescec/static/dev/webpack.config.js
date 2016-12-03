@@ -13,6 +13,7 @@ var config = webpackConfigTool({
     copy_array: [
         { from: 'node_modules/bootstrap/dist', to: 'vendor/bootstrap' },
         { from: 'node_modules/nprogress', to: 'vendor/nprogress' },
+        { from: 'node_modules/jquery/dist/jquery.min.js', to: 'vendor/jquery/jquery.min.js' },
     ]
 });
 

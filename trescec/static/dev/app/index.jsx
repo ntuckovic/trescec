@@ -4,7 +4,6 @@ import serialize from 'form-serialize';
 import hasClass from 'react-kit/hasClass';
 import fetchFromServer from '../react_dumplings/fetch_from_server.jsx';
 import * as Cookies from "js-cookie";
-import $ from "jquery";
 
 import '../sass/custom.scss';
 
