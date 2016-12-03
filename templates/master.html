@@ -65,9 +65,12 @@
                 </ol>
             {% endblock header %}
             {% block main %}
+
+            {% endblock main %}
+            {% block appscript %}
                 <div id="app" />
                 <script src="{% static "public/bundle.js" %}" type="text/javascript"></script>
-            {% endblock main %}
+            {% endblock appscript %}
         </div>
     </body>
 

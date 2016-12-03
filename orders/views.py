@@ -13,7 +13,7 @@ from django.views.generic import CreateView, DetailView
 from core.views.mixins import NavigationMixin
 
 from .models import ShoppingCart, OrderItem
-# from .forms import OrderForm
+from .forms import OrderForm
 
 
 class ShoppingCartView(NavigationMixin, TemplateView):
@@ -39,25 +39,31 @@ class ShoppingCartView(NavigationMixin, TemplateView):
         )
 
         context_data['amount_range'] = range(1, 101)
+        context_data['shopping_cart'] = self.shopping_cart
 
         return context_data
 
 
-# class OrderView(NavigationMixin, CreateView):
-#     form_class = OrderForm
-#
-#     def dispatch(self, request, *args, **kwargs):
-#         self.shopping_cart_hash = self.request.COOKIES.get('shopping_cart')
-#         self.shopping_cart = ShoppingCart.objects.filter(
-#             hash=self.shopping_cart_hash
-#         ).first()
-#
-#         return super(OrderView, self).dispatch(
-#             request, *args, **kwargs
-#         )
-#
-#     def get_form_kwargs(self):
-#         kwargs = super(OrderView, self).get_form_kwargs()
-#         kwargs['shopping_cart'] = self.shopping_cart
-#
-#         return kwargs
+class OrderView(NavigationMixin, CreateView):
+    template_name = 'orders/order_form.html'
+    form_class = OrderForm
+    nav_item = 'order_form'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.shopping_cart_hash = self.kwargs.get('cart_hash')
+        self.shopping_cart = ShoppingCart.objects.filter(
+            hash=self.shopping_cart_hash
+        ).first()
+
+        if self.shopping_cart is None:
+            return HttpResponseRedirect(reverse('home'))
+
+        return super(OrderView, self).dispatch(
+            request, *args, **kwargs
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super(OrderView, self).get_form_kwargs()
+        kwargs['shopping_cart'] = self.shopping_cart
+
+        return kwargs
