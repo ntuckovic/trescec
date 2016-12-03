@@ -16,20 +16,24 @@ from .models import ShoppingCart, OrderItem
 from .forms import OrderForm
 
 
-class ShoppingCartView(NavigationMixin, TemplateView):
-    template_name = 'orders/shoppingcart_detail.html'
-    nav_item = 'shopping_cart'
+class ShoppingCartMixin(object):
+    def get_shopping_cart_hash(self, request):
+        raise NotImplementedError
 
     def dispatch(self, request, *args, **kwargs):
-        self.shopping_cart_hash = self.request.COOKIES.get('shopping_cart')
+        self.shopping_cart_hash = self.get_shopping_cart_hash(request)
         self.shopping_cart = ShoppingCart.objects.filter(
             hash=self.shopping_cart_hash
         ).first()
 
-        return super(ShoppingCartView, self).dispatch(request, *args, **kwargs)
+        return super(ShoppingCartMixin, self).dispatch(
+            request, *args, **kwargs
+        )
 
     def get_context_data(self, **kwargs):
-        context_data = super(ShoppingCartView, self).get_context_data(**kwargs)
+        context_data = super(ShoppingCartMixin, self).get_context_data(
+            **kwargs
+        )
 
         context_data['shopping_cart'] = self.shopping_cart
         context_data['order_items'] = OrderItem.objects.select_related(
@@ -38,29 +42,41 @@ class ShoppingCartView(NavigationMixin, TemplateView):
             shopping_cart=self.shopping_cart
         )
 
+        return context_data
+
+
+class ShoppingCartView(NavigationMixin, ShoppingCartMixin, TemplateView):
+    template_name = 'orders/shoppingcart_detail.html'
+    nav_item = 'shopping_cart'
+
+    def get_shopping_cart_hash(self, request):
+        return request.COOKIES.get('shopping_cart')
+
+    def get_context_data(self, **kwargs):
+        context_data = super(ShoppingCartView, self).get_context_data(**kwargs)
+
         context_data['amount_range'] = range(1, 101)
-        context_data['shopping_cart'] = self.shopping_cart
 
         return context_data
 
 
-class OrderView(NavigationMixin, CreateView):
+class OrderView(NavigationMixin, ShoppingCartMixin, CreateView):
     template_name = 'orders/order_form.html'
     form_class = OrderForm
     nav_item = 'order_form'
 
+    def get_shopping_cart_hash(self, request):
+        return self.kwargs.get('cart_hash')
+
     def dispatch(self, request, *args, **kwargs):
-        self.shopping_cart_hash = self.kwargs.get('cart_hash')
-        self.shopping_cart = ShoppingCart.objects.filter(
-            hash=self.shopping_cart_hash
-        ).first()
+        dispatch = super(OrderView, self).dispatch(
+            request, *args, **kwargs
+        )
 
         if self.shopping_cart is None:
             return HttpResponseRedirect(reverse('home'))
 
-        return super(OrderView, self).dispatch(
-            request, *args, **kwargs
-        )
+        return dispatch
 
     def get_form_kwargs(self):
         kwargs = super(OrderView, self).get_form_kwargs()
