@@ -1,0 +1,9 @@
+{% extends 'master.html' %}
+
+{% load i18n %}
+
+{% block title_extra %} | {{ flatpage.title }}{% endblock title_extra %}
+
+{% block main %}
+    {{ flatpage.content }}
+{% endblock main %}
