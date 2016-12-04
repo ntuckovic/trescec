@@ -11,6 +11,7 @@ from django.contrib.flatpages import views
 
 urlpatterns = [
     url(r'^$', views.flatpage, {'url': '/'}, name='home'),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include('products.urls', namespace='products',
         app_name='products')),
