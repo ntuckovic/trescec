@@ -1,0 +1,39 @@
+{% load i18n %}
+
+{% include "orders/components/order_detail.html" with shopping_cart=shopping_cart order_items=order_items %}
+<div class="row">
+    <div class="col-md-12">
+        <legend>{% trans "Contact Details" %}</legend>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% trans 'Full Name' %}: {{ order.first_name }} {{ order.last_name }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% trans 'Address' %}:
+        <div class="col-md-12">
+            <div class="row">
+                {{ order.street }} {{ order.house_number }}
+            </div>
+            <div class="row">
+                {{ order.postal_code }} {{ order.place }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% trans 'Contact' %}:
+        <div class="col-md-12">
+            <div class="row">
+                {% trans 'E-mail' %}: {{ order.email }}
+            </div>
+            <div class="row">
+                {% trans 'Phone' %}: {{ order.phone_number }}
+            </div>
+        </div>
+    </div>
+</div>

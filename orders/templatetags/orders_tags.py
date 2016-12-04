@@ -16,7 +16,8 @@ def get_shopping_cart(context):
 
     if shopping_cart_hash:
         shopping_cart = ShoppingCart.objects.filter(
-            hash=shopping_cart_hash
+            hash=shopping_cart_hash,
+            ordered=False
         ).first()
 
     return shopping_cart

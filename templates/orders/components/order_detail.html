@@ -1,0 +1,49 @@
+{% load i18n %}
+
+<div class="row">
+    <div class="col-md-12">
+        <legend>{% trans "Order Details" %}</legend>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        {% trans "Product name" %}
+                    </th>
+                    <th>
+                        {% trans "Amount" %}
+                    </th>
+                    <th>
+                        {% trans "Price" %}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order_item in order_items %}
+                    <tr class="order-item-tr" data-order-item-id="{{ order_item.id }}">
+                        <td>
+                            {{ order_item.product.name }}
+                        </td>
+                        <td>
+                            x{{ order_item.amount }}
+                        </td>
+                        <td class="price" data-unit-price="{{ order_item.product.price }}" data-order-item-id="{{ order_item.id }}">
+                            <span class="calculated-price">{{ order_item.calculated_price }}</span>kn
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2" class="text-right">
+                        <h4>{% trans "Total:" %}</h4>
+                    </td>
+                    <td>
+                        <h4>{{ shopping_cart.total_price }}kn</h4>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -64,9 +64,7 @@ class App extends React.Component {
         data.shopping_cart = existingShoppingCart || false;
 
         fetchFromServer.post(API_URL.ORDERITEMS_LIST, data, (data) => {
-            if (!existingShoppingCart) {
-                Cookies.set('shopping_cart', data.shopping_cart.hash);
-            }
+            Cookies.set('shopping_cart', data.shopping_cart.hash);
             this.updateShoppingCartItemsCount(data.shopping_cart.items_count)
         }, {
             "X-CSRFToken": CSRF_TOKEN

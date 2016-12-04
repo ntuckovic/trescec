@@ -6,6 +6,18 @@ from django.contrib import admin
 from .models import Order, OrderItem, ShoppingCart
 
 
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = [
+        'order',
+        'product'
+    ]
+
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     search_fields = ['first_name', 'last_name', 'place', 'street']
@@ -15,13 +27,8 @@ class OrderAdmin(admin.ModelAdmin):
         'phone_number',
         'status'
     ]
-
-
-@admin.register(OrderItem)
-class OrderItem(admin.ModelAdmin):
-    list_display = [
-        'order',
-        'product'
+    inlines = [
+        OrderItemInline
     ]
 
 
@@ -30,4 +37,7 @@ class ShoppingCartAdmin(admin.ModelAdmin):
     list_display = [
         'hash',
         'created'
+    ]
+    inlines = [
+        OrderItemInline
     ]

@@ -27,13 +27,27 @@ class ShoppingCart(models.Model):
     created = models.DateTimeField(
         verbose_name=_('Created'), auto_now_add=True)
     hash = models.CharField(max_length=10, default=createHash, unique=True)
+    ordered = models.BooleanField(verbose_name=_('Ordered'), default=False)
 
     def __str__(self):
         return self.hash
 
+    def get_items(self):
+        return OrderItem.objects.filter(shopping_cart=self)
+
     @property
     def items_count(self):
-        return OrderItem.objects.filter(shopping_cart=self).count()
+        return self.get_items().count()
+
+    @property
+    def total_price(self):
+        order_items = self.get_items()
+        total_price = 0
+
+        for order_item in order_items:
+            total_price += order_item.calculated_price
+
+        return total_price
 
 
 @python_2_unicode_compatible

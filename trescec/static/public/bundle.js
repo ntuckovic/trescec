@@ -609,9 +609,7 @@
 	            data.shopping_cart = existingShoppingCart || false;
 	
 	            _fetch_from_server2.default.post(API_URL.ORDERITEMS_LIST, data, function (data) {
-	                if (!existingShoppingCart) {
-	                    Cookies.set('shopping_cart', data.shopping_cart.hash);
-	                }
+	                Cookies.set('shopping_cart', data.shopping_cart.hash);
 	                _this2.updateShoppingCartItemsCount(data.shopping_cart.items_count);
 	            }, {
 	                "X-CSRFToken": CSRF_TOKEN

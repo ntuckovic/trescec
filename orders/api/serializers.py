@@ -50,8 +50,12 @@ class ShoppingCartField(serializers.Field):
     def to_internal_value(self, data):
         if data is not False:
             shopping_cart = ShoppingCart.objects.filter(
-                hash=data
+                hash=data,
+                ordered=False
             ).first()
+
+            if shopping_cart is None:
+                shopping_cart = self.create_shopping_cart()
         else:
             shopping_cart = self.create_shopping_cart()
 

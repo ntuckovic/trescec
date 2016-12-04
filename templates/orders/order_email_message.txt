@@ -1,0 +1,19 @@
+{% load i18n %}
+{% trans "Order Details" %}
+{% for order_item in order_items %}
+{% trans "ID:" %} {{ order_item.product.id }} {% trans "Product:" %} {{ order_item.product.name }} {% trans "Unit price:" %} {{ order_item.product.price }}kn
+{% trans "Amount:" %} {{ order_item.amount }}
+{% trans "Price:" %} {{ order_item.calculated_price }}kn
+{% endfor %}
+{% trans "Total:" %} {{ shopping_cart.total_price }}kn
+
+{% trans "Contact Details" %}
+{% trans 'Full Name' %}: {{ order.first_name }} {{ order.last_name }}
+
+{% trans 'Address' %}:
+{{ order.street }} {{ order.house_number }}
+{{ order.postal_code }} {{ order.place }}
+
+{% trans 'Contact' %}:
+{% trans 'E-mail' %}: {{ order.email }}
+{% trans 'Phone' %}: {{ order.phone_number }}
