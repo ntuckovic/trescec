@@ -28,6 +28,7 @@ class ProductMixin(NavigationMixin, object):
 
 
 class ProductListView(ProductMixin, ListView):
+    paginate_by = 10
     pass
 
 
