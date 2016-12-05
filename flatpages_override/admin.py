@@ -22,7 +22,7 @@ class PageForm(FlatpageForm):
 class FlatPageAdmin(FlatPageAdmin):
     form = PageForm
     fieldsets = [
-        (None, {'fields': ('title', 'content')}),
+        (None, {'fields': ('sites', 'title', 'content')}),
         (_('Advanced options'), {
             'classes': ('collapse', ),
             'fields': (

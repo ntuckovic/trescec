@@ -31,9 +31,14 @@
                 <div class="header clearfix">
                     <nav>
                         <ul class="nav nav-pills pull-right">
-                            <li role="presentation" class="{% if nav_item == 'home' %}active{% endif %}">
-                                <a href="#">
+                            <li role="presentation" class="{% if flatpage.url == '/' %}active{% endif %}">
+                                <a href="{% url 'flatpages:home' %}">
                                     <span class="glyphicon glyphicon-home"></span> {% trans "Home" %}
+                                </a>
+                            </li>
+                            <li role="presentation" class="{% if flatpage.url == '/about/' %}active{% endif %}">
+                                <a href="{% url 'flatpages:about' %}">
+                                    <span class="glyphicon glyphicon-tree-deciduous"></span> {% trans "About us" %}
                                 </a>
                             </li>
                             <li role="presentation" class="{% if nav_item == 'product' %}active{% endif %}">
@@ -53,6 +58,11 @@
                                             0
                                         {% endif %}
                                     </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="{% if flatpage.url == '/contact/' %}active{% endif %}">
+                                <a href="{% url 'flatpages:contact' %}">
+                                    <span class="glyphicon glyphicon-envelope"></span> {% trans "Contact" %}
                                 </a>
                             </li>
                         </ul>

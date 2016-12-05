@@ -6,11 +6,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.flatpages import views
 
 
 urlpatterns = [
-    url(r'^$', views.flatpage, {'url': '/'}, name='home'),
+    url(r'^', include('flatpages_override.urls', namespace='flatpages')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include('products.urls', namespace='products',
