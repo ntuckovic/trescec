@@ -9,14 +9,12 @@ from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 from django.utils.translation import ugettext_lazy as _
 
-from ckeditor.widgets import CKEditorWidget
-
-from trescec.utils.ckeditor_config import ckeditor_config
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class PageForm(FlatpageForm):
     content = forms.CharField(
-        widget=CKEditorWidget(config_name='awesome_ckeditor')
+        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor')
     )
 
 
@@ -24,11 +22,12 @@ class PageForm(FlatpageForm):
 class FlatPageAdmin(FlatPageAdmin):
     form = PageForm
     fieldsets = [
-        (None, {'fields': ('url', 'title', 'content')}),
+        (None, {'fields': ('title', 'content')}),
         (_('Advanced options'), {
             'classes': ('collapse', ),
             'fields': (
-                'enable_comments',
+                'url',
+                # 'enable_comments',
                 'registration_required',
                 'template_name',
             ),
