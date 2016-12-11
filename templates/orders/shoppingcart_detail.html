@@ -8,7 +8,7 @@
     <li class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
         {% trans "Shopping Cart" %}
     </li>
-    {% if order_items %}
+    {% if shopping_cart %}
         <li>
             <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}">
                 {% trans "Contact Details" %}
@@ -20,7 +20,7 @@
 {% block main %}
     <div class="row">
         <div class="col-md-12">
-            {% if order_items %}
+            {% if shopping_cart and order_items %}
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}" class="btn btn-primary">
