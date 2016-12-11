@@ -17,14 +17,34 @@ from .forms import OrderForm
 
 
 class ShoppingCartMixin(object):
+    is_new_shopping_cart = False
+
     def get_shopping_cart_hash(self, request):
         raise NotImplementedError
 
+    def get_new_shopping_cart(self):
+        self.is_new_shopping_cart = True
+
+        return ShoppingCart.create_new()
+
+    def get_shopping_cart(self, request, shopping_cart_hash):
+        shopping_cart = None
+
+        if shopping_cart_hash:
+            shopping_cart = ShoppingCart.objects.filter(
+                hash=shopping_cart_hash
+            ).first()
+
+            if shopping_cart is None:
+                shopping_cart = self.get_new_shopping_cart()
+        else:
+            shopping_cart = self.get_new_shopping_cart()
+
+        return shopping_cart
+
     def dispatch(self, request, *args, **kwargs):
         self.shopping_cart_hash = self.get_shopping_cart_hash(request)
-        self.shopping_cart = ShoppingCart.objects.filter(
-            hash=self.shopping_cart_hash
-        ).first()
+        self.shopping_cart = self.get_shopping_cart(request, self.shopping_cart_hash)
 
         return super(ShoppingCartMixin, self).dispatch(
             request, *args, **kwargs
@@ -43,6 +63,16 @@ class ShoppingCartMixin(object):
         )
 
         return context_data
+
+    def render_to_response(self, context, **response_kwargs):
+        response = super(ShoppingCartMixin, self).render_to_response(
+            context, **response_kwargs
+        )
+
+        if self.is_new_shopping_cart is True:
+            response.set_cookie('shopping_cart', self.shopping_cart.hash)
+
+        return response
 
 
 class ShoppingCartView(NavigationMixin, ShoppingCartMixin, TemplateView):

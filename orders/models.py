@@ -49,6 +49,13 @@ class ShoppingCart(models.Model):
 
         return total_price
 
+    @classmethod
+    def create_new(cls):
+        shopping_cart = cls()
+        shopping_cart.save()
+
+        return shopping_cart
+
 
 @python_2_unicode_compatible
 class Order(models.Model):

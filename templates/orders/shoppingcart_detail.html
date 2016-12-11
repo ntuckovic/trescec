@@ -8,11 +8,13 @@
     <li class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
         {% trans "Shopping Cart" %}
     </li>
-    <li>
-        <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}">
-            {% trans "Contact Details" %}
-        </a>
-    </li>
+    {% if order_items %}
+        <li>
+            <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}">
+                {% trans "Contact Details" %}
+            </a>
+        </li>
+    {% endif %}
 {% endblock extra_breadcrumb %}
 
 {% block main %}

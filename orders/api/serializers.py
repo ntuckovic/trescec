@@ -39,10 +39,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class ShoppingCartField(serializers.Field):
     def create_shopping_cart(self):
-        shopping_cart = ShoppingCart()
-        shopping_cart.save()
-
-        return shopping_cart
+        return ShoppingCart.create_new()
 
     def to_representation(self, obj):
         return ShoppingCartSerializer(obj).data
