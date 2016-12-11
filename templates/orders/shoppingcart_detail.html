@@ -5,16 +5,18 @@
 {% block title_extra %} | {% trans "Shopping Cart" %}{% endblock title_extra %}
 
 {% block extra_breadcrumb %}
-    <li class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
-        {% trans "Shopping Cart" %}
-    </li>
-    {% if shopping_cart %}
-        <li>
-            <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}">
-                {% trans "Contact Details" %}
-            </a>
+    <ol class="breadcrumb">
+        <li class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
+            {% trans "Shopping Cart" %}
         </li>
-    {% endif %}
+        {% if shopping_cart %}
+            <li>
+                <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}">
+                    {% trans "Contact Details" %}
+                </a>
+            </li>
+        {% endif %}
+    </ol>
 {% endblock extra_breadcrumb %}
 
 {% block main %}

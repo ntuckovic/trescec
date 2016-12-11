@@ -9,5 +9,4 @@ from django.contrib.flatpages import views
 urlpatterns = [
     url(r'^$', views.flatpage, {'url': '/'}, name='home'),
     url(r'^about/$', views.flatpage, {'url': '/about/'}, name='about'),
-    url(r'^contact/$', views.flatpage, {'url': '/contact/'}, name='contact'),
 ]

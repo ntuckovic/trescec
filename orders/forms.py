@@ -40,14 +40,14 @@ class OrderForm(ModelForm):
                 'order': order
             }
         )
-        msg_html = render_to_string(
-            'orders/order_email_message.html',
-            {
-                'shopping_cart': shopping_cart,
-                'order_items': order_items,
-                'order': order
-            }
-        )
+        # msg_html = render_to_string(
+        #     'orders/order_email_message.html',
+        #     {
+        #         'shopping_cart': shopping_cart,
+        #         'order_items': order_items,
+        #         'order': order
+        #     }
+        # )
 
         email = send_mail(
             subject=_('Order No. {0}').format(order.id),

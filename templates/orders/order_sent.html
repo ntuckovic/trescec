@@ -1,0 +1,41 @@
+{% extends 'master.html' %}
+
+{% load i18n %}
+{% load bootstrap %}
+
+{% block title_extra %} | {% trans "Order Successfully sent!" %}{% endblock title_extra %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="alert alert-success text-center" role="alert">
+            <p>
+                {% trans 'Your order is successfully sent!' %}
+            </p>
+
+            <h3>
+            {% trans "Thank you for making an order!" %}
+            </h3>
+
+            <h4>
+            {% blocktrans with email=order.email %}
+            We will contact you, as soon as possible, on your email (<b>{{ email }}</b>) or call you on
+            phone number you provided in order to finish ordering process.
+            {% endblocktrans %}
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        {% include "orders/order_email_message.html" %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-24 text-center">
+        <a href="{% url 'flatpages:home' %}" class="btn btn-lg btn-primary">
+            <span class="glyphicon glyphicon-home"></span> {% trans "Back to homepage" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

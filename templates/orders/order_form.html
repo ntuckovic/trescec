@@ -6,14 +6,16 @@
 {% block title_extra %} | {% trans "Contact Details" %}{% endblock title_extra %}
 
 {% block extra_breadcrumb %}
-    <li>
-        <a href="{% url 'orders:shopping_cart' %}">
-            {% trans "Shopping Cart" %}
-        </a>
-    </li>
-    <li class="{% if nav_item == 'order_form' %}active{% endif %}">
-        {% trans "Contact Details" %}
-    </li>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'orders:shopping_cart' %}">
+                {% trans "Shopping Cart" %}
+            </a>
+        </li>
+        <li class="{% if nav_item == 'order_form' %}active{% endif %}">
+            {% trans "Contact Details" %}
+        </li>
+    </ol>
 {% endblock extra_breadcrumb %}
 
 {% block main %}

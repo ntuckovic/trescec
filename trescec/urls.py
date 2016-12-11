@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from trescec.views import ContactView
 
 urlpatterns = [
     url(r'^', include('flatpages_override.urls', namespace='flatpages')),
@@ -16,6 +17,7 @@ urlpatterns = [
         app_name='products')),
     url(r'^orders/', include('orders.urls', namespace='orders',
         app_name='orders')),
+    url(r'^contact/$', ContactView.as_view(), name='contact')
 ]
 
 

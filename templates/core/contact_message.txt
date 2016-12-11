@@ -1,0 +1,6 @@
+{% load i18n %}
+{% trans "Contact email from web shop" %}
+{% trans "Contact name" %}: {{ contact_name }}
+{% trans "Contact email" %}: {{ contact_email }}
+{% trans "Content" %}:
+{{ content }}

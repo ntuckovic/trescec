@@ -94,6 +94,16 @@ class Order(models.Model):
     def display_name(self):
         return '{0} {1}'.format(self.first_name, self.last_name)
 
+    @classmethod
+    def get_order_by_shopping_cart(cls, shopping_cart):
+        order_items = OrderItem.objects.filter(shopping_cart=shopping_cart)
+        order = None
+
+        if order_items:
+            order = order_items.first().order
+
+        return order
+
 
 @python_2_unicode_compatible
 class OrderItem(models.Model):

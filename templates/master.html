@@ -60,20 +60,18 @@
                                     </span>
                                 </a>
                             </li>
-                            <li role="presentation" class="{% if flatpage.url == '/contact/' %}active{% endif %}">
-                                <a href="{% url 'flatpages:contact' %}">
+                            <li role="presentation" class="{% if nav_item == 'contact' %}active{% endif %}">
+                                <a href="{% url 'contact' %}">
                                     <span class="glyphicon glyphicon-envelope"></span> {% trans "Contact" %}
                                 </a>
                             </li>
                         </ul>
                     </nav>
                     <h3 class="text-muted">OPG Treščec</h3>
-                </div>
-                <ol class="breadcrumb">
-                    {% block extra_breadcrumb %}
+            </div>
+            {% block extra_breadcrumb %}
 
-                    {% endblock extra_breadcrumb %}
-                </ol>
+            {% endblock extra_breadcrumb %}
             {% endblock header %}
             {% block main %}
 
