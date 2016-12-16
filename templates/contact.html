@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load bootstrap %}
+{% load flatblocks %}
 
 {% block title_extra %} | {% trans "Contact" %}{% endblock title_extra %}
 
@@ -10,7 +11,7 @@
 
     <div class="row">
         <div class="col-md-6">
-
+            {% flatblock "contact" %}
         </div>
         <div class="col-md-6">
             {{ form|bootstrap }}
