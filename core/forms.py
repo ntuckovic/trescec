@@ -37,4 +37,8 @@ class ContactForm(forms.Form):
             message=msg_txt,
         )
 
-        return email
+        return {
+            'email': email,
+            'contact_email': self.cleaned_data.get('contact_email'),
+            'contact_name': self.cleaned_data.get('contact_name')
+        }

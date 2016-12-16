@@ -1,0 +1,31 @@
+{% extends 'contact.html' %}
+
+{% load i18n %}
+
+
+{% block contact_main %}
+<div class="col-md-8 col-md-offset-2">
+    <div class="row">
+        <div class="alert alert-success text-center" role="alert">
+            {% trans 'Your contact email was successfuly sent!' %}
+        </div>
+    </div>
+    <div class="row">
+        <p>
+            Dear <b>{{ request.GET.contact_name }}</b>,
+        </p>
+        <p>
+            We will contact you back on <b>{{ request.GET.contact_email }}</b>
+            as soon as possible!
+        </p>
+    </div>
+    <div class="row text-center mt10">
+        <a href="{% url 'flatpages:home' %}" class="btn btn-lg btn-primary">
+            <span class="glyphicon glyphicon-home"></span> {% trans "Go to homepage" %}
+        </a>
+        <a href="{% url 'products:product_list' %}" class="btn btn-lg btn-primary">
+            <span class="glyphicon glyphicon-th-list"></span> {% trans "Go to our products" %}
+        </a>
+    </div>
+</div>
+{% endblock contact_main %}
