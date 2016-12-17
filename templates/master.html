@@ -65,6 +65,13 @@
                                     <span class="glyphicon glyphicon-envelope"></span> {% trans "Contact" %}
                                 </a>
                             </li>
+                            {% if user.is_staff %}
+                            <li role="presentation">
+                                <a href="{% url 'admin:index' %}">
+                                    <span class="glyphicon glyphicon glyphicon-pencil"></span> {% trans "Administration" %}
+                                </a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </nav>
                     <h3 class="text-muted">OPG Treščec</h3>
