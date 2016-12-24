@@ -1,0 +1,8 @@
+{
+  "name": "OPG Trescec",
+  "description": "Webshop Django application",
+  "image": "heroku/python",
+  "repository": "https://github.com/ntuckovic/trescec",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
