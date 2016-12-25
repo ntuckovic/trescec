@@ -4,7 +4,7 @@ import os
 from base import *
 import dj_database_url
 
-DEBUG = False
+DEBUG = True
 
 DEBUG_TOOLBAR = False
 CACHE = True
