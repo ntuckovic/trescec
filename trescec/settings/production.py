@@ -29,9 +29,7 @@ ALLOWED_HOSTS = ['*']
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles/')
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static/'),
-)
+STATICFILES_DIRS = ()
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
