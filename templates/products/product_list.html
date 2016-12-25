@@ -20,9 +20,11 @@
                     <div class="list-group-item js-product">
                         <div class="row">
                             <div class="col-md-3">
-                                <a href="#" class="thumbnail">
-                                    <img class="img-responsive" src="{{ product.medium_thumbnail.url }}"  />
-                                </a>
+                                {% if product.medium_thumbnail %}
+                                    <a href="#" class="thumbnail">
+                                        <img class="img-responsive" src="{{ product.medium_thumbnail.url }}"  />
+                                    </a>
+                                {% endif %}
                             </div>
                             <div class="col-md-9">
                                 <div class="row">
