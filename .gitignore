@@ -2,5 +2,5 @@
 trescec/settings/dev.py
 trescec/media
 trescec/static/dev/node_modules
-base.py
-secret.py
+# base.py
+# secret.py
