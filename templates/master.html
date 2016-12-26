@@ -60,6 +60,11 @@
                                     </span>
                                 </a>
                             </li>
+                            <li role="presentation" class="{% if nav_item == 'blog' %}active{% endif %}">
+                                <a href="{% url 'blogs:post_list' %}">
+                                    <span class="glyphicon glyphicon-comment"></span> {% trans "Posts" %}
+                                </a>
+                            </li>
                             <li role="presentation" class="{% if nav_item == 'contact' %}active{% endif %}">
                                 <a href="{% url 'contact' %}">
                                     <span class="glyphicon glyphicon-envelope"></span> {% trans "Contact" %}

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'flatblocks',
 
+    'blogs',
     'core',
     'orders',
     'products',

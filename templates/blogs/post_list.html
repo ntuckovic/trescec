@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+
+{% load i18n %}
+
+{% block title_extra %} | {% trans "Posts" %}{% endblock title_extra %}
+
+{% block extra_breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="{% if nav_item == 'blog' %}active{% endif %}">{% trans "Posts" %}</li>
+    </ol>
+{% endblock extra_breadcrumb %}
+
+{% block main %}
+    {% for post in post_list %}
+        {{ post.title }}
+    {% endfor %}
+{% endblock main %}

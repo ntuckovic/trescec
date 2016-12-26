@@ -17,6 +17,8 @@ urlpatterns = [
         app_name='products')),
     url(r'^orders/', include('orders.urls', namespace='orders',
         app_name='orders')),
+    url(r'^blog/', include('blogs.urls', namespace='blogs',
+        app_name='blogs')),
     url(r'^contact/$', ContactView.as_view(), name='contact'),
     url(r'^contact-email-sent/$',
         ContactEmailSent.as_view(), name='contact_email_sent')
