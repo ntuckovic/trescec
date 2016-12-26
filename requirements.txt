@@ -9,9 +9,11 @@ django-filter==0.15.3
 django-flatblocks==0.9.3
 django-imagekit==3.3
 django-phonenumber-field==1.1.0
+django-storages==1.5.1
 django-suit==0.2.21
 django-suit-ckeditor==0.0.2
 djangorestframework==3.5.3
+dropbox==7.1.1
 gunicorn==19.6.0
 Markdown==2.6.7
 phonenumberslite==7.7.3
@@ -19,7 +21,10 @@ pilkit==1.1.13
 Pillow==3.4.2
 psycopg2==2.6.2
 pytz==2016.7
+requests==2.12.4
 six==1.10.0
 sqlparse==0.2.2
+typing==3.5.2.2
 ujson==1.35
+urllib3==1.19.1
 whitenoise==3.2.2

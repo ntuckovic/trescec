@@ -48,3 +48,8 @@ STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+MEDIA_ROOT = '/media'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = 'i0McIhrQTL0AAAAAAAAA0-49R6XfwiiyaKF0sOCZ9fiQqvStCCQTYyIycBAk19m-'
+DROPBOX_ROOT_PATH = 'trescec'

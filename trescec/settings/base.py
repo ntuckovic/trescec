@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
 
     # 3rd party
+    'storages',
     'rest_framework',
     'bootstrapform',
     'suit_ckeditor',
@@ -126,6 +127,7 @@ SITE_ID = 1
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+USE_STORAGE = False
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
