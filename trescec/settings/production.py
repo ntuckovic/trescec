@@ -9,6 +9,7 @@ DEBUG = True
 DEBUG_TOOLBAR = False
 CACHE = True
 CACHALOT = True
+USE_STORAGE = 'aws'
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -49,7 +50,14 @@ STATIC_URL = '/static/'
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-MEDIA_ROOT = '/media'
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN = 'i0McIhrQTL0AAAAAAAAA0-49R6XfwiiyaKF0sOCZ9fiQqvStCCQTYyIycBAk19m-'
-DROPBOX_ROOT_PATH = 'trescec'
+if USE_STORAGE is 'dropbox':
+    MEDIA_ROOT = '/media'
+    DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+    DROPBOX_OAUTH2_TOKEN = 'i0McIhrQTL0AAAAAAAAA0-49R6XfwiiyaKF0sOCZ9fiQqvStCCQTYyIycBAk19m-'
+    DROPBOX_ROOT_PATH = 'trescec'
+elif USE_STORAGE is 'aws':
+    AWS_ACCESS_KEY_ID = 'AKIAILEUJ6RPNKFSASOA'
+    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = 'trescec2'
+    AWS_QUERYSTRING_AUTH = False
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
