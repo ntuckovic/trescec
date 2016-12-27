@@ -61,4 +61,4 @@ elif USE_STORAGE is 'aws':
     AWS_STORAGE_BUCKET_NAME = 'trescec2'
     AWS_QUERYSTRING_AUTH = False
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    AWS_REGION = 'eu-west-1'
+    AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'
