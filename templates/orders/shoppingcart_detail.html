@@ -1,6 +1,8 @@
 {% extends 'master.html' %}
 
 {% load i18n %}
+{% load imagekit %}
+{% load core_tags %}
 
 {% block title_extra %} | {% trans "Shopping Cart" %}{% endblock title_extra %}
 
@@ -58,7 +60,11 @@
                                 {% for order_item in  order_items %}
                                     <tr class="order-item-tr" data-order-item-id="{{ order_item.id }}">
                                         <td>
-                                            <img src="{{ order_item.product.thumbnail.url }}" alt="{{ order_item.product.name }}"/>
+                                            {% if order_item.product.image %}
+                                                {% generateimage 'extrasmall_thumbnail' source=order_item.product.image as product_image %}
+                                                {% get_thumbnail_url product_image as product_image_url %}
+                                                <img class="img-responsive post-detail-img" src="{{ product_image_url }}"/>
+                                            {% endif %}
                                         </td>
                                         <td>
                                             {{ order_item.product.name }}

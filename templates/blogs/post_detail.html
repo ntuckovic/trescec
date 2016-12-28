@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load imagekit %}
+{% load core_tags %}
 
 {% block title_extra %} | {{ post.title }}{% endblock title_extra %}
 
@@ -22,12 +23,27 @@
             <h1>{{ post.title }}</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                {{ post.lead_text|safe }}
+            </p>
+        </div>
+    </div>
     {% if post.image %}
         <div class="row">
-            {% generateimage 'large_thumbnail_fit' source=post.image as post_image %}
+            {% generateimage 'big_thumbnail_fit' source=post.image as post_image %}
+            {% get_thumbnail_url post_image as post_image_url %}
             <div class="col-md-12">
-                <img class="img-responsive post-detail-img" src="{{ post_image.url }}"/>
+                <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
             </div>
         </div>
     {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                {{ post.content|safe }}
+            </p>
+        </div>
+    </div>
 {% endblock main %}

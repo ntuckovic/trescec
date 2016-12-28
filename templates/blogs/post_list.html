@@ -2,14 +2,10 @@
 
 {% load i18n %}
 {% load imagekit %}
+{% load core_tags %}
 
 {% block title_extra %} | {% trans "Posts" %}{% endblock title_extra %}
 
-{% block extra_breadcrumb %}
-    <ol class="breadcrumb">
-        <li class="{% if nav_item == 'blog' %}active{% endif %}">{% trans "Posts" %}</li>
-    </ol>
-{% endblock extra_breadcrumb %}
 
 {% block main %}
     <h1>{% trans "Posts" %}</h1>
@@ -30,7 +26,9 @@
                         {% if post.image %}
                             <div class="col-md-3">
                                 <a href="{% url 'blogs:post_detail' post.id %}" class="thumbnail">
-                                    {% generateimage 'small_thumbnail' source=post.image -- class="img-responsive"%}
+                                    {% generateimage 'small_thumbnail' source=post.image as post_image %}
+                                    {% get_thumbnail_url post_image as post_image_url %}
+                                    <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
                                 </a>
                             </div>
                         {% endif %}
@@ -46,6 +44,10 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                {% empty %}
+                <div class="list-group-item">
+                    <h4 class="list-group-item-heading">{% trans 'There is no published posts' %}</h4>
                 </div>
                 {% endfor %}
             </div>
