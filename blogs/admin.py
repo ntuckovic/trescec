@@ -24,10 +24,10 @@ class PostForm(forms.ModelForm):
 class PostAdmin(admin.ModelAdmin):
     form = PostForm
     search_fields = ['title']
-    list_display = ['title', 'user_id', 'created', 'published', 'modified']
+    list_display = ['title', 'user_id', 'created', 'published', 'modified', 'published_on']
     image_display = AdminThumbnail(image_field='thumbnail')
     image_display.short_description = _('Image')
-    readonly_fields = ['created', 'modified', 'image_display']
+    readonly_fields = ['created', 'modified', 'published_on', 'image_display']
     fields = (
         'title',
         'lead_text',

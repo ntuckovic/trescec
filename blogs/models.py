@@ -22,6 +22,8 @@ class Post(models.Model):
         verbose_name=_('Created'), auto_now_add=True)
     modified = models.DateTimeField(
         verbose_name=_('Modified'), auto_now_add=True)
+    published_on = models.DateTimeField(
+        verbose_name=_('Published on'), blank=True, null=True)
     user_id = models.PositiveIntegerField(verbose_name=_('User ID'))
     image = models.ImageField(
         verbose_name=_('Image'), upload_to='posts/', blank=True, null=True)
@@ -37,6 +39,11 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.modified = timezone.now()
+        now = timezone.now()
+
+        self.modified = now
+
+        if self.published is True:
+            self.published_on = now
 
         super(Post, self).save(*args, **kwargs)

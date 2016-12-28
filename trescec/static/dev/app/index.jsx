@@ -52,6 +52,29 @@ class App extends React.Component {
         $('.js-shopping-cart-badge').html(count);
     }
 
+    showProductFormSuccessDialog (data) {
+        let message_tpl = eval('`'+MESSAGES.PRODUCT_FORM_SUCCESS_MESSAGE+'`')
+
+        console.log(message_tpl)
+
+        bootbox.confirm({
+            message: message_tpl,
+            buttons: {
+                confirm: {
+                    label: MESSAGES.CONTINUE_SHOPPING,
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: MESSAGES.PROCEED_TO_CHECKOUT,
+                    className: 'btn-default'
+                },
+            },
+            callback: function (result) {
+                console.log('This was logged in the callback: ' + result);
+            }
+        });
+    }
+
     decreaseShoppingCartItemsCount () {
         let currentCount = Cookies.get('shopping_cart_items_count', 0);
         let newCount = currentCount - 1;
@@ -66,6 +89,7 @@ class App extends React.Component {
         fetchFromServer.post(API_URL.ORDERITEMS_LIST, data, (data) => {
             Cookies.set('shopping_cart', data.shopping_cart.hash);
             this.updateShoppingCartItemsCount(data.shopping_cart.items_count)
+            this.showProductFormSuccessDialog(data)
         }, {
             "X-CSRFToken": CSRF_TOKEN
         });

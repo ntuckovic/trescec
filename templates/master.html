@@ -15,11 +15,18 @@
         <link rel="stylesheet" href="{% static "public/vendor/nprogress/nprogress.css" %}"/>
         <link rel="stylesheet" href="{% static "public/css/style.css" %}">
         <script src="{% static "public/vendor/jquery/jquery.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "public/vendor/bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "public/vendor/bootbox/bootbox.min.js" %}"></script>
         {% block extra_head %}
             <script>
                 var CSRF_TOKEN = "{{ csrf_token }}";
                 var API_URL = {
                     ORDERITEMS_LIST: "{% url 'orders:api:orderitems-list' %}"
+                };
+                var MESSAGES = {
+                    PRODUCT_FORM_SUCCESS_MESSAGE: "{% trans '<b>${data.product.name}</b> successfully added to your shopping cart. Would you like to review your cart and proceed to checkout, or continue shopping?' %}",
+                    PROCEED_TO_CHECKOUT: "{% trans 'Proceed to checkout' %}",
+                    CONTINUE_SHOPPING: "{% trans 'Continue shopping' %}",
                 };
             </script>
         {% endblock extra_head %}

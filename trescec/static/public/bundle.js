@@ -593,6 +593,30 @@
 	            $('.js-shopping-cart-badge').html(count);
 	        }
 	    }, {
+	        key: 'showProductFormSuccessDialog',
+	        value: function showProductFormSuccessDialog(data) {
+	            var message_tpl = eval('`' + MESSAGES.PRODUCT_FORM_SUCCESS_MESSAGE + '`');
+	
+	            console.log(message_tpl);
+	
+	            bootbox.confirm({
+	                message: message_tpl,
+	                buttons: {
+	                    confirm: {
+	                        label: MESSAGES.CONTINUE_SHOPPING,
+	                        className: 'btn-primary'
+	                    },
+	                    cancel: {
+	                        label: MESSAGES.PROCEED_TO_CHECKOUT,
+	                        className: 'btn-default'
+	                    }
+	                },
+	                callback: function callback(result) {
+	                    console.log('This was logged in the callback: ' + result);
+	                }
+	            });
+	        }
+	    }, {
 	        key: 'decreaseShoppingCartItemsCount',
 	        value: function decreaseShoppingCartItemsCount() {
 	            var currentCount = Cookies.get('shopping_cart_items_count', 0);
@@ -611,6 +635,7 @@
 	            _fetch_from_server2.default.post(API_URL.ORDERITEMS_LIST, data, function (data) {
 	                Cookies.set('shopping_cart', data.shopping_cart.hash);
 	                _this2.updateShoppingCartItemsCount(data.shopping_cart.items_count);
+	                _this2.showProductFormSuccessDialog(data);
 	            }, {
 	                "X-CSRFToken": CSRF_TOKEN
 	            });

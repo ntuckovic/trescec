@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from rest_framework import serializers
 
+from products.api.serializers import LightProductSerializer
 from ..models import OrderItem, ShoppingCart
 
 
@@ -35,6 +36,10 @@ class OrderItemSerializer(serializers.ModelSerializer):
             'calculated_price',
             'shopping_cart',
         )
+
+
+class FullOrderItemSerializer(OrderItemSerializer):
+    product = LightProductSerializer()
 
 
 class ShoppingCartField(serializers.Field):
@@ -85,3 +90,6 @@ class WriteOrderItemSerializer(OrderItemSerializer):
             )
 
         return instance
+
+    def to_representation(self, instance):
+        return FullOrderItemSerializer().to_representation(instance)

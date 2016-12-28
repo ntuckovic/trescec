@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <a href="{% url 'blogs:post_detail' post.id %}">
-                                <h4 class="list-group-item-heading">{{ post.title }}</h4>
+                                <h4 class="list-group-item-heading">{{ post.title }}{% if post.published_on %}<small> - {% trans 'Published' %}: {{ post.published_on }}</small>{% endif%}</h4>
                             </a>
                         </div>
                     </div>
