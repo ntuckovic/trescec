@@ -8,6 +8,9 @@ from django.utils import timezone
 
 from django.utils.encoding import python_2_unicode_compatible
 
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
 
 @python_2_unicode_compatible
 class Post(models.Model):
@@ -20,6 +23,12 @@ class Post(models.Model):
     modified = models.DateTimeField(
         verbose_name=_('Modified'), auto_now_add=True)
     user_id = models.PositiveIntegerField(verbose_name=_('User ID'))
+    image = models.ImageField(
+        verbose_name=_('Image'), upload_to='posts/', blank=True, null=True)
+    thumbnail = ImageSpecField(source='image',
+                                      processors=[ResizeToFill(500, 500)],
+                                      format='JPEG',
+                                      options={'quality': 100})
 
     class Meta:
         verbose_name = _('Post')

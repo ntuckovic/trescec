@@ -6,7 +6,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFill, SmartResize
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -27,7 +27,7 @@ class Product(models.Model):
                                format='JPEG',
                                options={'quality': 100})
     medium_thumbnail = ImageSpecField(source='image',
-                               processors=[ResizeToFill(400, 400)],
+                               processors=[ResizeToFill(400)],
                                format='JPEG',
                                options={'quality': 100})
 

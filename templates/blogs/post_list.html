@@ -1,6 +1,7 @@
 {% extends 'master.html' %}
 
 {% load i18n %}
+{% load imagekit %}
 
 {% block title_extra %} | {% trans "Posts" %}{% endblock title_extra %}
 
@@ -11,7 +12,43 @@
 {% endblock extra_breadcrumb %}
 
 {% block main %}
-    {% for post in post_list %}
-        {{ post.title }}
-    {% endfor %}
+    <h1>{% trans "Posts" %}</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                {% for post in post_list %}
+                <div class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="{% url 'blogs:post_detail' post.id %}">
+                                <h4 class="list-group-item-heading">{{ post.title }}</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% if post.image %}
+                            <div class="col-md-3">
+                                <a href="{% url 'blogs:post_detail' post.id %}" class="thumbnail">
+                                    {% generateimage 'small_thumbnail' source=post.image -- class="img-responsive"%}
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if post.image %}
+                        <div class="col-md-9">
+                        {% else %}
+                        <div class="col-md-12">
+                        {% endif %}
+                            <p class="list-group-item-text mb5">{{ post.lead_text|safe }}</p>
+                            <a href="{% url 'blogs:post_detail' post.id %}" class="btn btn-primary btn-sm pull-right">
+                                {% trans "More" %}
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock main %}

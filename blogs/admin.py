@@ -3,6 +3,9 @@
 from __future__ import unicode_literals
 from django.contrib import admin
 from django import forms
+from django.utils.translation import ugettext_lazy as _
+
+from imagekit.admin import AdminThumbnail
 
 from .models import Post
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -22,11 +25,15 @@ class PostAdmin(admin.ModelAdmin):
     form = PostForm
     search_fields = ['title']
     list_display = ['title', 'user_id', 'created', 'published', 'modified']
-    readonly_fields = ['created', 'modified']
+    image_display = AdminThumbnail(image_field='thumbnail')
+    image_display.short_description = _('Image')
+    readonly_fields = ['created', 'modified', 'image_display']
     fields = (
         'title',
         'lead_text',
         'content',
+        'image',
+        'image_display',
         'published',
     )
 

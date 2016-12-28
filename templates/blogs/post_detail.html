@@ -1,0 +1,33 @@
+{% extends 'blogs/post_list.html' %}
+
+{% load i18n %}
+{% load imagekit %}
+
+{% block title_extra %} | {{ post.title }}{% endblock title_extra %}
+
+{% block extra_breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'blogs:post_list' %}">{% trans "Posts" %}</a>
+        </li>
+        <li class="active">
+            {{ post.title }}
+        </li>
+    </ol>
+{% endblock extra_breadcrumb %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ post.title }}</h1>
+        </div>
+    </div>
+    {% if post.image %}
+        <div class="row">
+            {% generateimage 'large_thumbnail_fit' source=post.image as post_image %}
+            <div class="col-md-12">
+                <img class="img-responsive post-detail-img" src="{{ post_image.url }}"/>
+            </div>
+        </div>
+    {% endif %}
+{% endblock main %}

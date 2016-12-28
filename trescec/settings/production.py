@@ -60,5 +60,5 @@ elif USE_STORAGE is 'aws':
     AWS_SECRET_ACCESS_KEY = '2IpIMN0VoMdJpVLprIUjH+9ktf3T52PiwFcgRRDT'
     AWS_STORAGE_BUCKET_NAME = 'trescec2'
     AWS_QUERYSTRING_AUTH = False
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
