@@ -50,14 +50,25 @@ STATIC_URL = '/static/'
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+SECRET_KEY = os.environ['SECRET_KEY']
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = 587
+
+SHOP_SYSTEM_EMAIL = 'shop@opg-trescec.hr'
+SHOP_ADMIN_EMAILS = ['ntuckovic@gmail.com']
+SHOP_CONTACT_EMAILS = SHOP_ADMIN_EMAILS
+
 if USE_STORAGE is 'dropbox':
     MEDIA_ROOT = '/media'
     DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-    DROPBOX_OAUTH2_TOKEN = 'i0McIhrQTL0AAAAAAAAA0-49R6XfwiiyaKF0sOCZ9fiQqvStCCQTYyIycBAk19m-'
-    DROPBOX_ROOT_PATH = 'trescec'
+    DROPBOX_OAUTH2_TOKEN = os.environ['DROPBOX_OAUTH2_TOKEN']
 elif USE_STORAGE is 'aws':
-    AWS_ACCESS_KEY_ID = 'AKIAILEUJ6RPNKFSASOA'
-    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
     AWS_STORAGE_BUCKET_NAME = 'trescec2'
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'

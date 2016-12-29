@@ -59,11 +59,11 @@ class App extends React.Component {
             message: message_tpl,
             buttons: {
                 confirm: {
-                    label: MESSAGES.CONTINUE_SHOPPING,
+                    label: '<span class="glyphicon glyphicon-forward"></span> ' + MESSAGES.CONTINUE_SHOPPING,
                     className: 'btn-primary'
                 },
                 cancel: {
-                    label: MESSAGES.PROCEED_TO_CHECKOUT,
+                    label: '<span class="glyphicon glyphicon-shopping-cart"></span> ' + MESSAGES.PROCEED_TO_CHECKOUT,
                     className: 'btn-default'
                 },
             },

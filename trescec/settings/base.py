@@ -10,17 +10,6 @@ ALLOWED_HOSTS = [
 
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'trescec',
-        'USER': 'trescec',
-        'PASSWORD': 'trescec',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-
 # Application definition
 
 INSTALLED_APPS = [
