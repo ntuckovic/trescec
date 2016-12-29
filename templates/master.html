@@ -20,6 +20,9 @@
         {% block extra_head %}
             <script>
                 var CSRF_TOKEN = "{{ csrf_token }}";
+                var SITE_URL = {
+                    SHOPPING_CART: "{% url 'orders:shopping_cart' %}"
+                }
                 var API_URL = {
                     ORDERITEMS_LIST: "{% url 'orders:api:orderitems-list' %}"
                 };

@@ -55,8 +55,6 @@ class App extends React.Component {
     showProductFormSuccessDialog (data) {
         let message_tpl = eval('`'+MESSAGES.PRODUCT_FORM_SUCCESS_MESSAGE+'`')
 
-        console.log(message_tpl)
-
         bootbox.confirm({
             message: message_tpl,
             buttons: {
@@ -70,7 +68,9 @@ class App extends React.Component {
                 },
             },
             callback: function (result) {
-                console.log('This was logged in the callback: ' + result);
+                if (result === false) {
+                    window.location.href = SITE_URL.SHOPPING_CART;
+                }
             }
         });
     }

@@ -597,8 +597,6 @@
 	        value: function showProductFormSuccessDialog(data) {
 	            var message_tpl = eval('`' + MESSAGES.PRODUCT_FORM_SUCCESS_MESSAGE + '`');
 	
-	            console.log(message_tpl);
-	
 	            bootbox.confirm({
 	                message: message_tpl,
 	                buttons: {
@@ -612,7 +610,9 @@
 	                    }
 	                },
 	                callback: function callback(result) {
-	                    console.log('This was logged in the callback: ' + result);
+	                    if (result === false) {
+	                        window.location.href = SITE_URL.SHOPPING_CART;
+	                    }
 	                }
 	            });
 	        }
@@ -22959,6 +22959,7 @@
 	    delete: function _delete(url, onSuccess) {
 	        var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 	
+	        _reactNprogress2.default.start();
 	
 	        return fetch(url, {
 	            credentials: 'same-origin',

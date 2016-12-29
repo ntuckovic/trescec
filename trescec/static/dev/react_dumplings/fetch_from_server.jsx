@@ -76,6 +76,7 @@ const fetchFromServer = {
     },
 
     delete: (url, onSuccess, headers={}) => {
+        NProgress.start();
 
         return fetch(url, {
           credentials: 'same-origin',
