@@ -60,7 +60,7 @@ class App extends React.Component {
             buttons: {
                 confirm: {
                     label: '<span class="glyphicon glyphicon-forward"></span> ' + MESSAGES.CONTINUE_SHOPPING,
-                    className: 'btn-primary'
+                    className: 'btn-success'
                 },
                 cancel: {
                     label: '<span class="glyphicon glyphicon-shopping-cart"></span> ' + MESSAGES.PROCEED_TO_CHECKOUT,

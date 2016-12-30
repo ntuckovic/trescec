@@ -27,7 +27,7 @@
             {% if shopping_cart and order_items %}
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}" class="btn btn-primary">
+                        <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}" class="btn btn-success">
                             <span class="glyphicon glyphicon glyphicon-forward"></span>
                             {% trans "Proceed to checkout" %}
                             <span class="glyphicon glyphicon glyphicon-forward"></span>
@@ -110,7 +110,7 @@
                     <p>Please, go to our products page and select something for purchase</p>
                     <p>in order to continue with checkout!</p>
                     {% endblocktrans %}
-                    <a href="{% url 'products:product_list' %}" class="btn btn-primary mt10" >
+                    <a href="{% url 'products:product_list' %}" class="btn btn-success mt10" >
                         <span class="glyphicon glyphicon-th-list"></span>
                         {% trans "Products" %}
                     </a>

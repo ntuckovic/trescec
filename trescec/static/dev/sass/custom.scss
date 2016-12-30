@@ -12,7 +12,7 @@ $helper_classes: (
         h: ( 0 1 0 1 )
     ),
 
-    values: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50)
+    values: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50, 80, 90, 100)
 
 );
 
@@ -70,12 +70,28 @@ $values: map-get($helper_classes, values);
 }
 
 body {
-    padding-top: 20px;
+    padding-top: 100px;
     padding-bottom: 20px;
+    font-family: Lato,'Open Sans','Helvetica Neue',Helvetica,Arial, sans-serif;
+}
+
+header {
+    background-image: url("/static/public/img/cover_fb.jpg");
+    background-size: 100%;
+    background-position: center;
 }
 
 #google_map {
   width: 100%;
   height: 400px;
   background-color: grey;
+}
+
+hr.star-light:after, hr.star-primary:after {
+    content: "\f06c";
+}
+
+hr.star-light-hero:after {
+    background-image: url("/static/public/img/cover_fb.jpg");
+    background-position: center;
 }
