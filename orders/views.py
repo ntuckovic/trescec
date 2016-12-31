@@ -2,10 +2,9 @@
 
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.views.generic.base import ContextMixin, TemplateResponseMixin
-from django.views.generic import CreateView, DetailView, TemplateView
+from django.views.generic import CreateView, TemplateView
 
 from core.views.mixins import NavigationMixin
 

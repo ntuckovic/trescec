@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
@@ -47,3 +48,6 @@ class Post(models.Model):
             self.published_on = now
 
         super(Post, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('blogs:post_detail', args=[self.id])
