@@ -622,7 +622,7 @@ hr.star-light-hero:after {
 ul.nav {
   font-size: 11px; }
 
-section.success .list-group-item-text, section.success .control-label {
+section.success .list-group-item-text, section.success .control-label, section.success .panel {
   color: #333; }
 
 section.success table {
