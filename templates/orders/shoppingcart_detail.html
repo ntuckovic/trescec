@@ -11,7 +11,7 @@
         <li class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
             {% trans "Shopping Cart" %}
         </li>
-        {% if shopping_cart %}
+        {% if shopping_cart and order_items %}
             <li>
                 <a href="{% url 'orders:order_form' cart_hash=shopping_cart.hash %}">
                     {% trans "Contact Details" %}

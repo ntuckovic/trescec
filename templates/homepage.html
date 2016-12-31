@@ -1,0 +1,228 @@
+{% extends 'master.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load bootstrap %}
+{% load flatblocks %}
+{% load orders_tags %}
+
+{% block title_extra %} | {{ flatpage.title }}{% endblock title_extra %}
+
+{% block hero %}
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <img class="img-responsive" src="img/profile.png" alt=""> -->
+
+                <div class="intro-text">
+                    <span class="name">OPG TREŠČEC</span>
+                    <hr class="star-light star-light-hero">
+                    <span class="skills">uzgoj aronije - matični sok od aronije - čaj od aronije</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock hero %}
+
+{% block sections %}
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>{% trans "About" %}</h2>
+                <hr class="star-light">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                {% flatblock "about-us" %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <a href="{% url 'products:product_list' %}" class="btn btn-lg btn-outline mb30">
+                    <i class="fa fa-gift" aria-hidden="true"></i> {% trans "Buy aronia products" %}
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 portfolio-item">
+                <img src="{% static "public/img/working.jpg" %}" class="img-responsive" alt="">
+            </div>
+            <div class="col-sm-4 portfolio-item">
+                <img src="{% static "public/img/jars.jpg" %}" class="img-responsive" alt="">
+            </div>
+            <div class="col-sm-4 portfolio-item">
+                <img src="{% static "public/img/official_shirts_back.jpg" %}" class="img-responsive" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>{% trans 'Contact Us' %}</h2>
+            <hr class="star-primary">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-2">
+                {% flatblock "contact" %}
+            </div>
+            <div class="col-lg-4">
+                <form method="post" action="{% url 'contact' %}">
+                    <div class="form-group">
+                        {{ contact_form.non_field_errors }}
+                        {% csrf_token %}
+                    </div>
+                    <div class="form-group">
+                        {{ contact_form.contact_name|bootstrap }}
+                    </div>
+                    <div class="form-group">
+                        {{ contact_form.contact_email|bootstrap }}
+                    </div>
+                    <div class="form-group">
+                        {{ contact_form.content|bootstrap }}
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-lg pull-right" type="submit">
+                            <span class="glyphicon glyphicon-send"></span>
+                            {% trans "Send" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="google_map" class="mt20 mb20"></div>
+        </div>
+    </div>
+</section>
+{% endblock sections %}
+
+{% block appscript %}
+    <script>
+      function initMap() {
+        var uluru = {lat: 46.127, lng: 16.783};
+        var map = new google.maps.Map(document.getElementById('google_map'), {
+          zoom: 12,
+          center: uluru,
+          scrollwheel: false,
+          styles: [
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#71ABC3"
+                    },
+                    {
+                        "saturation": -10
+                    },
+                    {
+                        "lightness": -21
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.natural",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#18BC9C"
+                    },
+                    {
+                        "saturation": 37
+                    },
+                    {
+                        "lightness": -41
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#FFFFFF"
+                    },
+                    {
+                        "saturation": 10
+                    },
+                    {
+                        "lightness": 0
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "hue": "#A19FA0"
+                    },
+                    {
+                        "saturation": -98
+                    },
+                    {
+                        "lightness": -20
+                    },
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#FFFFFF"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 100
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            }
+        ]
+
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHNWVpEiYt7rm8KyW1qQPSITJzgc7DO1k&callback=initMap">
+    </script>
+{% endblock appscript %}
+
+{% block main %}
+
+{% endblock main %}

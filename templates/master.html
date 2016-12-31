@@ -1,13 +1,14 @@
 {% load static %}
 
 {% load i18n %}
-
 {% load orders_tags %}
+{% load flatblocks %}
 
+<!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>OPG Trečšec {% block title_extra %}{% endblock title_extra %}</title>
         <!-- Latest compiled and minified CSS -->
@@ -24,9 +25,12 @@
         <link rel="stylesheet" href="{% static "public/vendor/nprogress/nprogress.css" %}"/>
         <link rel="stylesheet" href="{% static "public/css/style.css" %}">
 
-        <script src="{% static "public/vendor/jquery/jquery.min.js" %}" type="text/javascript"></script>
-        <script src="{% static "public/vendor/bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
-        <script src="{% static "public/vendor/bootbox/bootbox.min.js" %}"></script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
         {% block extra_head %}
             <script>
@@ -49,123 +53,83 @@
     <body id="page-top" class="index">
 
         {% block navigation %}
-        <!-- Navigation -->
-        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="{% block logo_link %}#page-top{% endblock logo_link %}"><i class="fa fa-leaf" aria-hidden="true"></i> OPG Treščec</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="page-scroll">
-                            <a href="{% url 'flatpages:home' %}#page-top">
-                                <span class="glyphicon glyphicon-home"></span> {% trans "Home" %}
-                            </a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="{% url 'flatpages:home' %}#about">
-                                <span class="glyphicon glyphicon-tree-deciduous"></span> {% trans "About us" %}
-                            </a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#portfolio">Portfolio</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+            {% include 'navigation.html' %}
         {% endblock navigation %}
+
+        <div class="row breadcrumb-row">
+            <div class="container">
+                <div class="row">
+                    {% block extra_breadcrumb %}
+
+                    {% endblock extra_breadcrumb %}
+                </div>
+            </div>
+        </div>
 
         {% block hero %}
 
         {% endblock hero %}
 
         {% block sections %}
-        
+
         {% endblock sections %}
 
-        <div class="container mt100">
-            {% block header %}
-                <div class="header clearfix">
-                    <nav>
-                        <ul class="nav nav-pills pull-right">
-                            <li role="presentation" class="{% if flatpage.url == '/' %}active{% endif %}">
-                                <a href="{% url 'flatpages:home' %}">
-                                    <span class="glyphicon glyphicon-home"></span> {% trans "Home" %}
-                                </a>
-                            </li>
-                            <li role="presentation" class="{% if flatpage.url == '/about/' %}active{% endif %}">
-                                <a href="{% url 'flatpages:about' %}">
-                                    <span class="glyphicon glyphicon-tree-deciduous"></span> {% trans "About us" %}
-                                </a>
-                            </li>
-                            <li role="presentation" class="{% if nav_item == 'product' %}active{% endif %}">
-                                <a href="{% url 'products:product_list' %}">
-                                    <span class="glyphicon glyphicon-th-list"></span> {% trans "Products" %}
-                                </a>
-                            </li>
-                            <li role="presentation" class="{% if nav_item == 'shopping_cart' %}active{% endif %}">
-                                <a href="{% url 'orders:shopping_cart' %}">
-                                    {% get_shopping_cart as shopping_cart %}
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    {% trans "Shopping Cart" %}
-                                    <span class="badge js-shopping-cart-badge">
-                                        {% if shopping_cart and shopping_cart.items_count %}
-                                            {{ shopping_cart.items_count }}
-                                        {% else %}
-                                            0
-                                        {% endif %}
-                                    </span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="{% if nav_item == 'blog' %}active{% endif %}">
-                                <a href="{% url 'blogs:post_list' %}">
-                                    <span class="glyphicon glyphicon-comment"></span> {% trans "Posts" %}
-                                </a>
-                            </li>
-                            <li role="presentation" class="{% if nav_item == 'contact' %}active{% endif %}">
-                                <a href="{% url 'contact' %}">
-                                    <span class="glyphicon glyphicon-envelope"></span> {% trans "Contact" %}
-                                </a>
-                            </li>
-                            {% if user.is_staff %}
-                            <li role="presentation">
-                                <a href="{% url 'admin:index' %}">
-                                    <span class="glyphicon glyphicon glyphicon-pencil"></span> {% trans "Administration" %}
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                    <h3 class="text-muted">OPG Treščec</h3>
+        {% block main %}
+
+        {% endblock main %}
+
+        {% block footer %}
+        <!-- Footer -->
+        <footer class="text-center">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4 col-md-offset-2">
+                            <h3>{% trans "Contact" %}</h3>
+                            {% flatblock "contact" %}
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h3>{% trans "Links" %}</h3>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="https://www.facebook.com/aronijatrescec/" class="btn-social btn-outline">
+                                        <i class="fa fa-fw fa-facebook"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        {% comment %}
+                        <!-- <div class="footer-col col-md-4">
+                            <h3>About Freelancer</h3>
+                            <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        </div> -->
+                        {% endcomment %}
+                    </div>
+                </div>
             </div>
-            {% block extra_breadcrumb %}
+            <div class="footer-below">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            Copyright &copy; OPG Treščec 2017
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% endblock footer %}
 
-            {% endblock extra_breadcrumb %}
-            {% endblock header %}
-            {% block main %}
-
-            {% endblock main %}
-                <!-- Plugin JavaScript -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-                <!-- Theme JavaScript -->
-                <script src="{% static "public/vendor/bootstrap/theme/startbootstrap-freelancer/js/freelancer.min.js" %}"></script>
-            {% block appscript %}
-                <div id="app" />
-                <script src="{% static "public/bundle.js" %}" type="text/javascript"></script>
-            {% endblock appscript %}
-        </div>
+        <script src="{% static "public/vendor/jquery/jquery.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "public/vendor/bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "public/vendor/bootbox/bootbox.min.js" %}"></script>
+        <!-- Plugin JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <!-- Theme JavaScript -->
+        <script src="{% static "public/vendor/bootstrap/theme/startbootstrap-freelancer/js/freelancer.js" %}"></script>
+    {% block appscript %}
+        <div id="app" />
+        <script src="{% static "public/bundle.js" %}" type="text/javascript"></script>
+    {% endblock appscript %}
     </body>
 
 </html>

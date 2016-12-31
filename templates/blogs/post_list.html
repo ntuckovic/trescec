@@ -8,49 +8,57 @@
 
 
 {% block main %}
-    <h1>{% trans "Posts" %}</h1>
+<section class="success pt30" id="posts">
+    <div class="container">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="list-group">
-                {% for post in post_list %}
-                <div class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="{% url 'blogs:post_detail' post.id %}">
-                                <h4 class="list-group-item-heading">{{ post.title }}{% if post.published_on %}<small> - {% trans 'Published' %}: {{ post.published_on }}</small>{% endif%}</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        {% if post.image %}
-                            <div class="col-md-3">
-                                <a href="{% url 'blogs:post_detail' post.id %}" class="thumbnail">
-                                    {% generateimage 'small_thumbnail' source=post.image as post_image %}
-                                    {% get_thumbnail_url post_image as post_image_url %}
-                                    <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
+        <div class="col-lg-12 text-center">
+            <h2>{% trans "Posts" %}</h2>
+            <hr class="star-light">
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="list-group">
+                    {% for post in post_list %}
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{% url 'blogs:post_detail' post.id %}">
+                                    <h4 class="list-group-item-heading">{{ post.title }}{% if post.published_on %}<small> - {% trans 'Published' %}: {{ post.published_on }}</small>{% endif%}</h4>
                                 </a>
                             </div>
-                        {% endif %}
-                        {% if post.image %}
-                        <div class="col-md-9">
-                        {% else %}
-                        <div class="col-md-12">
-                        {% endif %}
-                            <p class="list-group-item-text mb5">{{ post.lead_text|safe }}</p>
-                            <a href="{% url 'blogs:post_detail' post.id %}" class="btn btn-primary btn-sm pull-right">
-                                {% trans "More" %}
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                        </div>
+                        <div class="row">
+                            {% if post.image %}
+                                <div class="col-md-3">
+                                    <a href="{% url 'blogs:post_detail' post.id %}" class="thumbnail">
+                                        {% generateimage 'small_thumbnail' source=post.image as post_image %}
+                                        {% get_thumbnail_url post_image as post_image_url %}
+                                        <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
+                                    </a>
+                                </div>
+                            {% endif %}
+                            {% if post.image %}
+                            <div class="col-md-9">
+                            {% else %}
+                            <div class="col-md-12">
+                            {% endif %}
+                                <div class="list-group-item-text mb5">{{ post.lead_text|safe }}</div>
+                                <a href="{% url 'blogs:post_detail' post.id %}" class="btn btn-success btn-sm pull-right">
+                                    {% trans "More" %}
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    {% empty %}
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans 'There is no published posts' %}</h4>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% empty %}
-                <div class="list-group-item">
-                    <h4 class="list-group-item-heading">{% trans 'There is no published posts' %}</h4>
-                </div>
-                {% endfor %}
             </div>
         </div>
     </div>
+</section>
 {% endblock main %}

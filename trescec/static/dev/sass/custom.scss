@@ -12,7 +12,7 @@ $helper_classes: (
         h: ( 0 1 0 1 )
     ),
 
-    values: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50, 80, 90, 100)
+    values: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50, 80, 90, 100, 120, 150)
 
 );
 
@@ -71,7 +71,6 @@ $values: map-get($helper_classes, values);
 
 body {
     padding-top: 100px;
-    padding-bottom: 20px;
     font-family: Lato,'Open Sans','Helvetica Neue',Helvetica,Arial, sans-serif;
 }
 
@@ -93,5 +92,22 @@ hr.star-light:after, hr.star-primary:after {
 
 hr.star-light-hero:after {
     background-image: url("/static/public/img/cover_fb.jpg");
-    background-position: center;
+    background-position: center 59.4%;
+}
+
+ul.nav {
+    font-size: 11px;
+}
+
+section.success {
+    .list-group-item-text, .control-label {
+        color: #333;
+    }
+}
+
+.breadcrumb-row {
+    background-color: #f5f5f5;
+    .breadcrumb {
+        margin-bottom: 0px;
+    }
 }

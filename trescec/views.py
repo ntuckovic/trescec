@@ -32,3 +32,17 @@ class ContactEmailSent(NavigationMixin, TemplateView):
     template_name = 'contact_email_sent.html'
     form_class = ContactForm
     nav_item = 'contact'
+
+
+class HomepageView(NavigationMixin, TemplateView):
+    template_name = 'homepage.html'
+    nav_item = 'home'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(HomepageView, self).get_context_data(
+            **kwargs
+        )
+
+        context_data['contact_form'] = ContactForm
+
+        return context_data

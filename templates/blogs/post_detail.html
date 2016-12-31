@@ -18,33 +18,37 @@
 {% endblock extra_breadcrumb %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-md-12">
-            <h1>{{ post.title }}</h1>
-            <h5>{% if post.published_on %}{% trans 'Published' %}: {{ post.published_on }}{% endif%}</h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <p>
-                {{ post.lead_text|safe }}
-            </p>
-        </div>
-    </div>
-    {% if post.image %}
+<section class="pt0" id="post">
+    <div class="container">
         <div class="row">
-            {% generateimage 'big_thumbnail_fit' source=post.image as post_image %}
-            {% get_thumbnail_url post_image as post_image_url %}
             <div class="col-md-12">
-                <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
+                <h1>{{ post.title }}</h1>
+                <h5>{% if post.published_on %}{% trans 'Published' %}: {{ post.published_on }}{% endif%}</h5>
             </div>
         </div>
-    {% endif %}
-    <div class="row">
-        <div class="col-md-12">
-            <p>
-                {{ post.content|safe }}
-            </p>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    {{ post.lead_text|safe }}
+                </p>
+            </div>
+        </div>
+        {% if post.image %}
+            <div class="row">
+                {% generateimage 'big_thumbnail_fit' source=post.image as post_image %}
+                {% get_thumbnail_url post_image as post_image_url %}
+                <div class="col-md-12">
+                    <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    {{ post.content|safe }}
+                </p>
+            </div>
         </div>
     </div>
+</section>
 {% endblock main %}

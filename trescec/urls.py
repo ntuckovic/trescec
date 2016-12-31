@@ -7,10 +7,10 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from trescec.views import ContactView, ContactEmailSent
+from trescec.views import ContactView, ContactEmailSent, HomepageView
 
 urlpatterns = [
-    url(r'^', include('flatpages_override.urls', namespace='flatpages')),
+    url(r'^$', HomepageView.as_view(), name='home'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include('products.urls', namespace='products',
@@ -21,7 +21,9 @@ urlpatterns = [
         app_name='blogs')),
     url(r'^contact/$', ContactView.as_view(), name='contact'),
     url(r'^contact-email-sent/$',
-        ContactEmailSent.as_view(), name='contact_email_sent')
+        ContactEmailSent.as_view(), name='contact_email_sent'),
+
+    url(r'^', include('flatpages_override.urls', namespace='flatpages')),
 ]
 
 

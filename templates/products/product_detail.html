@@ -14,64 +14,38 @@
 {% endblock extra_breadcrumb %}
 
 {% block main %}
-    <h1>{{ product.name }}</h1>
+    <section class="pt0" id="post">
+        <div class="container">
+            <h1>{{ product.name }}</h1>
 
-    <div class="row">
-        <div class="col-md-3">
-            {% if product.image %}
-                <a href="#" class="thumbnail">
-                    {% generateimage 'medium_thumbnail_fit' source=product.image as product_image %}
-                    {% get_thumbnail_url product_image as product_image_url %}
-                    <img class="img-responsive" src="{{ product_image_url }}"  />
-                </a>
-            {% endif %}
-        </div>
-        <div class="col-md-9">
             <div class="row">
-                <div class="col-md-12">
-                    <p class="mb5">
-                        {{ product.short_description|safe }}
-                    </p>
-                    <p class="mb5">
-                        {{ product.long_description|safe }}
-                    </p>
+                <div class="col-md-3">
+                    {% if product.image %}
+                        <a href="#" class="thumbnail">
+                            {% generateimage 'medium_thumbnail_fit' source=product.image as product_image %}
+                            {% get_thumbnail_url product_image as product_image_url %}
+                            <img class="img-responsive" src="{{ product_image_url }}"  />
+                        </a>
+                    {% endif %}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <form class="form-inline js-product-form">
-                        <div class="form-group mr10">
-                            <label class="control-label">
-                                {% trans 'Price:' %}
-                            </label>
-                            <label class="control-label">
-                                {{ product.price }}kn
-                            </label>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="mb5">
+                                {{ product.short_description|safe }}
+                            </p>
+                            <p class="mb5">
+                                {{ product.long_description|safe }}
+                            </p>
                         </div>
-                        <div class="form-group mr10">
-                            <label for="amount{{ product.id }}" class="control-label">
-                                {% trans 'Amount:' %}
-                            </label>
-                            <select id="amount" name="amount" class="form-control js-amount">
-                                {% for i in amount_range %}
-                                     <option value="{{ i }}">
-                                         {{ i }}
-                                     </option>
-                                {% endfor %}
-                            </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            {% include 'products/components/add_to_cart.html' %}
                         </div>
-                        <div class="form-group mr10">
-                            <input type="hidden" name="product" id="product" value="{{ product.id }}"/>
-                            <input type="hidden" name="price" id="price" value="{{ product.price }}"/>
-
-                            <button type="submit" class="btn btn-success pull-right">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>
-                                {% trans "Add to cart" %}
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock main %}
