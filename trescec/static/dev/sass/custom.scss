@@ -70,7 +70,16 @@ $values: map-get($helper_classes, values);
 }
 
 body {
-    padding-top: 100px;
+    padding-top: 50px;
+    @media (min-width: 768px){
+        padding-top: 140px;
+    }
+    @media (min-width: 992px){
+        padding-top: 150px;
+    }
+    @media (min-width: 1200px){
+        padding-top: 100px;
+    }
     font-family: Lato,'Open Sans','Helvetica Neue',Helvetica,Arial, sans-serif;
 }
 
@@ -97,6 +106,16 @@ hr.star-light-hero:after {
 
 ul.nav {
     font-size: 11px;
+    .page-scroll {
+        @media (min-width: 768px) and (max-width: 991px){
+            a {
+                padding: 10px 10px;
+            }
+            .glyphicon, .fa {
+                display: none;
+            }
+        }
+    }
 }
 
 section.success {
