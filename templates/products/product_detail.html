@@ -6,6 +6,15 @@
 
 {% block title_extra %} | {{ product.name }}{% endblock title_extra %}
 
+{% block extra_meta %}
+    {% if product.image %}
+        {% generateimage 'big_thumbnail_fit' source=product.image as product_image %}
+        {% get_thumbnail_url product_image as product_image_url %}
+    {% endif %}
+
+    {% include 'components/facebook/og_meta.html' with url=product.get_absolute_url title=product.name description=product.short_description image_url=product_image_url %}
+{% endblock extra_meta %}
+
 {% block extra_breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="{% url 'products:product_list' %}">{% trans "Products" %}</a></li>
@@ -14,7 +23,7 @@
 {% endblock extra_breadcrumb %}
 
 {% block main %}
-    <section class="pt0" id="post">
+    <section class="pt0" id="product">
         <div class="container">
             <h1>{{ product.name }}</h1>
 
@@ -28,7 +37,7 @@
                         </a>
                     {% endif %}
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-12">
                             <p class="mb5">
@@ -39,16 +48,14 @@
                             </p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 text-right">
-                            {% include 'products/components/add_to_cart.html' %}
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-
+                <div class="col-md-2">
+                    <div class="row">
+                        {% include "components/facebook/share_button.html" with url=product.get_absolute_url %}
+                    </div>
+                    <div class="row mt15">
+                        {% include 'products/components/add_to_cart.html' %}
+                    </div>
                 </div>
             </div>
         </div>

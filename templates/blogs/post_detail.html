@@ -27,15 +27,6 @@
 {% endblock extra_breadcrumb %}
 
 {% block main %}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 <section class="pt0" id="post">
     <div class="container">
         <div class="row">
@@ -46,7 +37,9 @@
         <div class="row">
             <div class="col-md-12">
                 <h5>
-                    {% if post.published_on %}{% trans 'Published' %}: {{ post.published_on }}{% endif%}
+                    <span class="plr5">
+                        {% if post.published_on %}{% trans 'Published' %}: {{ post.published_on }}{% endif%}
+                    </span>
                     {% include "components/facebook/share_button.html" with url=post.get_absolute_url %}
                 </h5>
             </div>
@@ -60,22 +53,20 @@
         </div>
         {% if post.image %}
             <div class="row">
-                {% generateimage 'big_thumbnail_fit' source=post.image as post_image %}
+                {% generateimage 'great_thumbnail_fit' source=post.image as post_image %}
                 {% get_thumbnail_url post_image as post_image_url %}
                 <div class="col-md-12">
-                    <img class="img-responsive post-detail-img" src="{{ post_image_url }}"/>
+                    <img class="img-responsive  mb15 post-detail-img" src="{{ post_image_url }}"/>
                 </div>
             </div>
         {% endif %}
         <div class="row">
             <div class="col-md-12">
-                <p>
-                    {{ post.content|safe }}
-                </p>
+                {{ post.content|safe }}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 {% include "components/facebook/share_button.html" with url=post.get_absolute_url %}
             </div>
         </div>

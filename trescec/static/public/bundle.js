@@ -600,17 +600,17 @@
 	            bootbox.confirm({
 	                message: message_tpl,
 	                buttons: {
-	                    confirm: {
-	                        label: '<span class="glyphicon glyphicon-forward"></span> ' + MESSAGES.CONTINUE_SHOPPING,
-	                        className: 'btn-success'
-	                    },
 	                    cancel: {
+	                        label: '<span class="glyphicon glyphicon-forward"></span> ' + MESSAGES.CONTINUE_SHOPPING,
+	                        className: 'btn-success pull-right ml15'
+	                    },
+	                    confirm: {
 	                        label: '<span class="glyphicon glyphicon-shopping-cart"></span> ' + MESSAGES.PROCEED_TO_CHECKOUT,
 	                        className: 'btn-default'
 	                    }
 	                },
 	                callback: function callback(result) {
-	                    if (result === false) {
+	                    if (result === true) {
 	                        window.location.href = SITE_URL.SHOPPING_CART;
 	                    }
 	                }

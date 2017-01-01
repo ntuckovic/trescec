@@ -38,6 +38,10 @@ class MediumThumbnailFit(SmallThumbnail):
     processors = [ResizeToFit(width=500)]
 
 
+class GreatThumbnailFit(SmallThumbnail):
+    processors = [ResizeToFit(width=600)]
+
+
 class BigThumbnailFit(SmallThumbnail):
     processors = [ResizeToFit(width=700)]
 
@@ -54,5 +58,6 @@ register.generator('large_thumbnail', LargeThumbnail)
 register.generator('extrasmall_thumbnail_fit', ExtraSmallThumbnailFit)
 register.generator('small_thumbnail_fit', SmallThumbnailFit)
 register.generator('medium_thumbnail_fit', MediumThumbnailFit)
+register.generator('great_thumbnail_fit', GreatThumbnailFit)
 register.generator('big_thumbnail_fit', BigThumbnailFit)
 register.generator('large_thumbnail_fit', LargeThumbnailFit)
