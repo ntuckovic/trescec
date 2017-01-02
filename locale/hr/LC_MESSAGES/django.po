@@ -1,0 +1,438 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-02 14:16+0100\n"
+"PO-Revision-Date: 2017-01-02 14:17+0122\n"
+"Last-Translator:   <ntuckovic@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Translated-Using: django-rosetta 0.7.12\n"
+
+#: blogs/admin.py:29 blogs/models.py:30 products/admin.py:29
+#: products/models.py:19 templates/orders/shoppingcart_detail.html:50
+msgid "Image"
+msgstr "Slika"
+
+#: blogs/models.py:18
+msgid "Title"
+msgstr "Naslov"
+
+#: blogs/models.py:19
+msgid "Lead Text"
+msgstr "Naslovni tekst"
+
+#: blogs/models.py:20 core/forms.py:18 templates/core/contact_message.txt:5
+msgid "Content"
+msgstr "Sadržaj"
+
+#: blogs/models.py:21 templates/blogs/post_detail.html:41
+#: templates/blogs/post_list.html:27
+msgid "Published"
+msgstr "Objavljeno"
+
+#: blogs/models.py:23 orders/models.py:28 orders/models.py:73
+#: products/models.py:21
+msgid "Created"
+msgstr "Kreirano"
+
+#: blogs/models.py:25 products/models.py:22
+msgid "Modified"
+msgstr "Promjenjeno"
+
+#: blogs/models.py:27
+msgid "Published on"
+msgstr "Objavljeno na"
+
+#: blogs/models.py:28
+msgid "User ID"
+msgstr "Korinički ID"
+
+#: blogs/models.py:37
+msgid "Post"
+msgstr "Vijest"
+
+#: blogs/models.py:38 templates/blogs/post_detail.html:21
+#: templates/blogs/post_list.html:7 templates/blogs/post_list.html:15
+#: templates/navigation.html:35
+msgid "Posts"
+msgstr "Vijesti"
+
+#: core/forms.py:13 templates/core/contact_message.txt:3
+msgid "Contact name"
+msgstr "Ime"
+
+#: core/forms.py:14 templates/core/contact_message.txt:4
+msgid "Contact email"
+msgstr "E-mail adresa"
+
+#: core/forms.py:32
+#, python-brace-format
+msgid "Contact from {0}"
+msgstr "Forma za kontant {0}"
+
+#: flatpages_override/admin.py:28
+msgid "Advanced options"
+msgstr "Napredne postavke"
+
+#: orders/forms.py:53
+#, python-brace-format
+msgid "Order No. {0}"
+msgstr "Narudžba broj:{0}"
+
+#: orders/models.py:30
+msgid "Ordered"
+msgstr "Naručeno"
+
+#: orders/models.py:33 orders/models.py:118 templates/navigation.html:47
+#: templates/orders/order_form.html:12
+#: templates/orders/shoppingcart_detail.html:7
+#: templates/orders/shoppingcart_detail.html:12
+#: templates/orders/shoppingcart_detail.html:28
+msgid "Shopping Cart"
+msgstr "Košarica"
+
+#: orders/models.py:34
+#| msgid "Shopping Cart"
+msgid "Shopping Carts"
+msgstr "Košarice"
+
+#: orders/models.py:77
+msgid "Finished on"
+msgstr "Završeno na"
+
+#: orders/models.py:79
+msgid "Shipped on"
+msgstr "Otpremljeno na"
+
+#: orders/models.py:80
+msgid "First Name"
+msgstr "Ime"
+
+#: orders/models.py:81
+msgid "Last Name"
+msgstr "Prezime"
+
+#: orders/models.py:82
+msgid "Place"
+msgstr "Mjesto"
+
+#: orders/models.py:83
+msgid "Postal Code"
+msgstr "Poštanski broj"
+
+#: orders/models.py:84
+msgid "Street"
+msgstr "Ulica"
+
+#: orders/models.py:86
+msgid "House Number"
+msgstr "Kućni broj"
+
+#: orders/models.py:87
+msgid "Email"
+msgstr "E-mail adresa"
+
+#: orders/models.py:89
+msgid "Phone Number"
+msgstr "Broj telefona"
+
+#: orders/models.py:92
+msgid "Shop Order"
+msgstr "Shop Narudžba"
+
+#: orders/models.py:93
+#| msgid "Shop Order"
+msgid "Shop Orders"
+msgstr "Shop Narudžbe"
+
+#: orders/models.py:115
+msgid "Order"
+msgstr "Narudžba"
+
+#: orders/models.py:122 products/models.py:36
+msgid "Product"
+msgstr "Proizvod"
+
+#: orders/models.py:123 templates/orders/components/order_detail.html:17
+#: templates/orders/shoppingcart_detail.html:56
+msgid "Amount"
+msgstr "Količina"
+
+#: orders/models.py:126
+msgid "Order Item"
+msgstr "Stavka narudžbe"
+
+#: orders/models.py:127
+#| msgid "Order Item"
+msgid "Order Items"
+msgstr "Stavke narudžbe"
+
+#: products/models.py:16
+msgid "Name"
+msgstr "Naziv"
+
+#: products/models.py:17
+msgid "Short Description"
+msgstr "Kratki opis"
+
+#: products/models.py:18
+msgid "Long description"
+msgstr "Detaljan opis"
+
+#: products/models.py:24 templates/orders/components/order_detail.html:20
+#: templates/orders/shoppingcart_detail.html:59
+msgid "Price"
+msgstr "Cijena"
+
+#: products/models.py:25
+msgid "Active"
+msgstr "Aktivan"
+
+#: products/models.py:37 templates/navigation.html:40
+#: templates/orders/shoppingcart_detail.html:122
+#: templates/products/product_detail.html:20
+#: templates/products/product_list.html:7
+#: templates/products/product_list.html:14
+msgid "Products"
+msgstr "Proizvodi"
+
+#: templates/blogs/post_list.html:48
+msgid "More"
+msgstr "Više"
+
+#: templates/blogs/post_list.html:56
+msgid "There is no published posts"
+msgstr "Nema objavljenih vijesti"
+
+#: templates/components/paginator.html:8
+#: templates/components/paginator.html:14
+msgid "Previous"
+msgstr "Prethodna"
+
+#: templates/components/paginator.html:26
+#: templates/components/paginator.html:32
+msgid "Next"
+msgstr "Sljedeća"
+
+#: templates/contact.html:7 templates/contact.html:10
+#: templates/master.html:100 templates/navigation.html:30
+#: templates/orders/order_email_message.html:29
+#: templates/orders/order_email_message.txt:17
+msgid "Contact"
+msgstr "Kontakt"
+
+#: templates/contact.html:15
+msgid "Contact Information"
+msgstr "Informacije za kontakt"
+
+#: templates/contact.html:20
+msgid "Contact Form"
+msgstr "Kontaktna forma"
+
+#: templates/contact.html:37 templates/homepage.html:96
+msgid "Send"
+msgstr "Pošalji"
+
+#: templates/contact_email_sent.html:10
+msgid "Your contact email was successfuly sent!"
+msgstr "Vaša poruka je uspješno poslana!"
+
+#: templates/contact_email_sent.html:24
+msgid "Go to homepage"
+msgstr "Idi na početnu stranicu"
+
+#: templates/contact_email_sent.html:27
+msgid "Go to our products"
+msgstr "Idi na proizvode"
+
+#: templates/core/contact_message.txt:2
+msgid "Contact email from web shop"
+msgstr "E-mail poruka iz web shopa"
+
+#: templates/homepage.html:35
+msgid "About"
+msgstr "O nama"
+
+#: templates/homepage.html:47
+msgid "Buy aronia products"
+msgstr "Kupi proizvode od aronije"
+
+#: templates/homepage.html:69
+msgid "Contact Us"
+msgstr "Kontaktiraj nas"
+
+#: templates/master.html:49
+msgid ""
+"<b>${data.product.name}</b> successfully added to your shopping cart. Would "
+"you like to review your cart and proceed to checkout, or continue shopping?"
+msgstr ""
+"<b>${data.product.name}</b>  je uspješno dodan/a u vašu košaricu. Želite li "
+"provjeriti vašu košaricu i završiti kupnju ili ostati na proizvodima i "
+"nastaviti kupnju?"
+
+#: templates/master.html:50 templates/orders/shoppingcart_detail.html:39
+#: templates/orders/shoppingcart_detail.html:108
+msgid "Proceed to checkout"
+msgstr "Provjeri košaricu"
+
+#: templates/master.html:51
+msgid "Continue shopping"
+msgstr "Nastavi kupovati"
+
+#: templates/master.html:104
+msgid "Links"
+msgstr "Linkovi"
+
+#: templates/navigation.html:20
+msgid "Home"
+msgstr "Početna"
+
+#: templates/navigation.html:25
+msgid "About us"
+msgstr "O nama"
+
+#: templates/navigation.html:60
+msgid "Administration"
+msgstr "Administracija"
+
+#: templates/orders/components/order_detail.html:5
+#: templates/orders/order_email_message.txt:2
+msgid "Order Details"
+msgstr "Detalji narudžbe"
+
+#: templates/orders/components/order_detail.html:14
+#: templates/orders/shoppingcart_detail.html:53
+msgid "Product name"
+msgstr "Ime proizvoda"
+
+#: templates/orders/components/order_detail.html:40
+#: templates/orders/order_email_message.txt:8
+msgid "Total:"
+msgstr "Ukupno:"
+
+#: templates/orders/order_email_message.html:6
+#: templates/orders/order_email_message.txt:10
+#: templates/orders/order_form.html:6 templates/orders/order_form.html:39
+msgid "Contact Details"
+msgstr "Kontakt podaci"
+
+#: templates/orders/order_email_message.html:11
+#: templates/orders/order_email_message.txt:11
+msgid "Full Name"
+msgstr "Ime i prezime"
+
+#: templates/orders/order_email_message.html:16
+#: templates/orders/order_email_message.txt:13
+msgid "Address"
+msgstr "Adresa"
+
+#: templates/orders/order_email_message.html:32
+#: templates/orders/order_email_message.txt:18
+msgid "E-mail"
+msgstr "E-mail adresa"
+
+#: templates/orders/order_email_message.html:35
+#: templates/orders/order_email_message.txt:19
+msgid "Phone"
+msgstr "Telefonski broj"
+
+#: templates/orders/order_email_message.txt:4
+msgid "ID:"
+msgstr "ID:"
+
+#: templates/orders/order_email_message.txt:4
+msgid "Product:"
+msgstr "Proizvod:"
+
+#: templates/orders/order_email_message.txt:4
+msgid "Unit price:"
+msgstr "Cijena jedinice:"
+
+#: templates/orders/order_email_message.txt:5
+#: templates/products/components/add_to_cart.html:14
+#: templates/products/product_list.html:63
+msgid "Amount:"
+msgstr "Količina:"
+
+#: templates/orders/order_email_message.txt:6
+#: templates/products/components/add_to_cart.html:6
+#: templates/products/product_list.html:55
+msgid "Price:"
+msgstr "Cijena:"
+
+#: templates/orders/order_form.html:16 templates/orders/order_form.html:26
+#: templates/orders/shoppingcart_detail.html:17
+msgid "Order & Contact Details"
+msgstr "Detalji narudžbe i kontakta"
+
+#: templates/orders/order_form.html:87
+msgid "Send Your Order"
+msgstr "Pošalji narudžbu"
+
+#: templates/orders/order_sent.html:6
+msgid "Order Successfully sent!"
+msgstr "Narudžba uspješno poslana!"
+
+#: templates/orders/order_sent.html:13
+msgid "Your order is successfully sent!"
+msgstr "Vaša narudžba je uspješno poslana!"
+
+#: templates/orders/order_sent.html:22
+msgid "Thank you for making an order!"
+msgstr "Zahvaljujemo na narudžbi!"
+
+#: templates/orders/order_sent.html:26
+#, python-format
+msgid ""
+"\n"
+"                    We will contact you, as soon as possible, on your email (<b>%(email)s</b>) or call you on\n"
+"                    phone number you provided in order to finish ordering process.\n"
+"                    "
+msgstr ""
+"\n"
+"Kontaktirati ćemo vas u što kraćem mogućem roku na vašu email adresu (<b>%(email)s</b>)  ili vas nazvati na telefonski broj koji ste unijeli tokom procesa kupnje, u svrhu ostvarenja željene narudžbe."
+
+#: templates/orders/order_sent.html:48
+msgid "Back to homepage"
+msgstr "Natrag na početnu stranicu"
+
+#: templates/orders/shoppingcart_detail.html:62
+msgid "Remove"
+msgstr "Ukloni"
+
+#: templates/orders/shoppingcart_detail.html:115
+msgid ""
+"\n"
+"                        <p>You have not put any product in shopping cart yet!</p>\n"
+"                        <p>Please, go to our products page and select something for purchase</p>\n"
+"                        <p>in order to continue with checkout!</p>\n"
+"                        "
+msgstr ""
+"\n"
+"<p>Niste dodali još ni jedan proizvod u vašu košaricu</p>\n"
+"<p>Molimo vas da otiđete na stranicu proizvod i odaberete nešto za narudžbu</p>\n"
+"<p>u svrhu nastavka kupnje naših proizvoda!</p>"
+
+#: templates/products/components/add_to_cart.html:30
+#: templates/products/product_list.html:82
+msgid "Add to cart"
+msgstr "Dodaj u košaricu"
+
+#: templates/products/product_list.html:90
+msgid "More about product"
+msgstr "Više o proizvodu"
+
+#: templates/products/product_list.html:100
+msgid "No available products!"
+msgstr "Nema raspoloživih proizvoda"

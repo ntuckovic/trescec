@@ -29,6 +29,10 @@ class ShoppingCart(models.Model):
     hash = models.CharField(max_length=10, default=createHash, unique=True)
     ordered = models.BooleanField(verbose_name=_('Ordered'), default=False)
 
+    class Meta:
+        verbose_name = _('Shopping Cart')
+        verbose_name_plural = _('Shopping Carts')
+
     def __str__(self):
         return self.hash
 
@@ -86,6 +90,7 @@ class Order(models.Model):
 
     class Meta:
         verbose_name = _('Shop Order')
+        verbose_name_plural = _('Shop Orders')
 
     def __str__(self):
         return self.display_name
@@ -119,6 +124,7 @@ class OrderItem(models.Model):
 
     class Meta:
         verbose_name = _('Order Item')
+        verbose_name_plural = _('Order Items')
 
     def __str__(self):
         return '{0} {1}'.format(self.order, self.product.name)

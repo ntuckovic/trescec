@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'^', include('flatpages_override.urls', namespace='flatpages')),
 ]
 
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns.append(url(r'^rosetta/', include('rosetta.urls')))
+
 
 if settings.DEBUG:
     urlpatterns += static(
