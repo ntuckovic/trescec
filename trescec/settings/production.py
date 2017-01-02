@@ -60,8 +60,8 @@ EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587
 
-SHOP_SYSTEM_EMAIL = 'shop@opg-trescec.hr'
-SHOP_ADMIN_EMAILS = ['ntuckovic@gmail.com']
+SHOP_SYSTEM_EMAIL = os.environ['SHOP_SYSTEM_EMAIL']
+SHOP_ADMIN_EMAILS = os.environ['SHOP_ADMIN_EMAILS'].replace(' ', '').split(',')
 SHOP_CONTACT_EMAILS = SHOP_ADMIN_EMAILS
 
 if USE_STORAGE is 'dropbox':
