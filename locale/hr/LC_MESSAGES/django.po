@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-02 14:29+0100\n"
-"PO-Revision-Date: 2017-01-02 14:30+0122\n"
+"POT-Creation-Date: 2017-01-02 15:14+0100\n"
+"PO-Revision-Date: 2017-01-02 15:16+0122\n"
 "Last-Translator:   <ntuckovic@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -250,7 +250,7 @@ msgstr "Informacije za kontakt"
 msgid "Contact Form"
 msgstr "Kontaktna forma"
 
-#: templates/contact.html:37 templates/homepage.html:96
+#: templates/contact.html:37 templates/homepage.html:94
 msgid "Send"
 msgstr "Pošalji"
 
@@ -270,15 +270,15 @@ msgstr "Idi na proizvode"
 msgid "Contact email from web shop"
 msgstr "E-mail poruka iz web shopa"
 
-#: templates/homepage.html:35
+#: templates/homepage.html:33
 msgid "About"
 msgstr "O nama"
 
-#: templates/homepage.html:47
+#: templates/homepage.html:45
 msgid "Buy aronia products"
 msgstr "Kupi proizvode od aronije"
 
-#: templates/homepage.html:69
+#: templates/homepage.html:67
 msgid "Contact Us"
 msgstr "Kontaktiraj nas"
 
@@ -291,8 +291,7 @@ msgstr ""
 "provjeriti vašu košaricu i završiti kupnju ili ostati na proizvodima i "
 "nastaviti kupnju?"
 
-#: templates/master.html:50 templates/orders/shoppingcart_detail.html:39
-#: templates/orders/shoppingcart_detail.html:108
+#: templates/master.html:50
 msgid "Proceed to checkout"
 msgstr "Provjeri košaricu"
 
@@ -416,6 +415,13 @@ msgstr ""
 #: templates/orders/order_sent.html:48
 msgid "Back to homepage"
 msgstr "Natrag na početnu stranicu"
+
+#: templates/orders/shoppingcart_detail.html:39
+#: templates/orders/shoppingcart_detail.html:108
+#| msgid "Proceed to checkout"
+msgctxt "to finish"
+msgid "Proceed to checkout"
+msgstr "Unesi kontaktne podatke i pošalji narudžbu"
 
 #: templates/orders/shoppingcart_detail.html:62
 msgid "Remove"
