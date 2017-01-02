@@ -15,7 +15,7 @@ from django.utils.encoding import python_2_unicode_compatible
 class Product(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=500)
     short_description = models.TextField(verbose_name=_('Short Description'), blank=True, null=True)
-    long_description = models.TextField(verbose_name=_('Long description'), blank=True, null=True)
+    long_description = models.TextField(verbose_name=_('Long Description'), blank=True, null=True)
     image = models.ImageField(verbose_name=_('Image'), upload_to='products/', blank=True, null=True)
     created = models.DateTimeField(
         verbose_name=_('Created'), auto_now_add=True)

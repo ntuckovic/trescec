@@ -13,10 +13,12 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class PostForm(forms.ModelForm):
     content = forms.CharField(
-        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor')
+        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor'),
+        label=_('Content')
     )
     lead_text = forms.CharField(
-        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor')
+        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor'),
+        label=_('Lead text')
     )
 
 

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-02 14:16+0100\n"
-"PO-Revision-Date: 2017-01-02 14:17+0122\n"
+"POT-Creation-Date: 2017-01-02 14:29+0100\n"
+"PO-Revision-Date: 2017-01-02 14:30+0122\n"
 "Last-Translator:   <ntuckovic@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,10 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Translated-Using: django-rosetta 0.7.12\n"
 
-#: blogs/admin.py:29 blogs/models.py:30 products/admin.py:29
+#: blogs/admin.py:17 blogs/models.py:20 core/forms.py:18
+#: templates/core/contact_message.txt:5
+msgid "Content"
+msgstr "Sadržaj"
+
+#: blogs/admin.py:21
+msgid "Lead text"
+msgstr "Naslovni tekst"
+
+#: blogs/admin.py:31 blogs/models.py:30 products/admin.py:31
 #: products/models.py:19 templates/orders/shoppingcart_detail.html:50
 msgid "Image"
 msgstr "Slika"
+
+#: blogs/apps.py:9
+msgid "Blogs"
+msgstr "Blog"
 
 #: blogs/models.py:18
 msgid "Title"
@@ -31,10 +44,6 @@ msgstr "Naslov"
 #: blogs/models.py:19
 msgid "Lead Text"
 msgstr "Naslovni tekst"
-
-#: blogs/models.py:20 core/forms.py:18 templates/core/contact_message.txt:5
-msgid "Content"
-msgstr "Sadržaj"
 
 #: blogs/models.py:21 templates/blogs/post_detail.html:41
 #: templates/blogs/post_list.html:27
@@ -85,6 +94,10 @@ msgstr "Forma za kontant {0}"
 msgid "Advanced options"
 msgstr "Napredne postavke"
 
+#: orders/apps.py:9
+msgid "Orders"
+msgstr "Narudžbe"
+
 #: orders/forms.py:53
 #, python-brace-format
 msgid "Order No. {0}"
@@ -103,7 +116,6 @@ msgid "Shopping Cart"
 msgstr "Košarica"
 
 #: orders/models.py:34
-#| msgid "Shopping Cart"
 msgid "Shopping Carts"
 msgstr "Košarice"
 
@@ -152,7 +164,6 @@ msgid "Shop Order"
 msgstr "Shop Narudžba"
 
 #: orders/models.py:93
-#| msgid "Shop Order"
 msgid "Shop Orders"
 msgstr "Shop Narudžbe"
 
@@ -174,21 +185,28 @@ msgid "Order Item"
 msgstr "Stavka narudžbe"
 
 #: orders/models.py:127
-#| msgid "Order Item"
 msgid "Order Items"
 msgstr "Stavke narudžbe"
+
+#: products/admin.py:17 products/models.py:17
+msgid "Short Description"
+msgstr "Kratki opis"
+
+#: products/admin.py:21 products/models.py:18
+msgid "Long Description"
+msgstr "Detaljan opis"
+
+#: products/apps.py:9 products/models.py:37 templates/navigation.html:40
+#: templates/orders/shoppingcart_detail.html:122
+#: templates/products/product_detail.html:20
+#: templates/products/product_list.html:7
+#: templates/products/product_list.html:14
+msgid "Products"
+msgstr "Proizvodi"
 
 #: products/models.py:16
 msgid "Name"
 msgstr "Naziv"
-
-#: products/models.py:17
-msgid "Short Description"
-msgstr "Kratki opis"
-
-#: products/models.py:18
-msgid "Long description"
-msgstr "Detaljan opis"
 
 #: products/models.py:24 templates/orders/components/order_detail.html:20
 #: templates/orders/shoppingcart_detail.html:59
@@ -198,14 +216,6 @@ msgstr "Cijena"
 #: products/models.py:25
 msgid "Active"
 msgstr "Aktivan"
-
-#: products/models.py:37 templates/navigation.html:40
-#: templates/orders/shoppingcart_detail.html:122
-#: templates/products/product_detail.html:20
-#: templates/products/product_list.html:7
-#: templates/products/product_list.html:14
-msgid "Products"
-msgstr "Proizvodi"
 
 #: templates/blogs/post_list.html:48
 msgid "More"

@@ -13,10 +13,12 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class PageForm(forms.ModelForm):
     short_description = forms.CharField(
-        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor')
+        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor'),
+        label=_('Short Description')
     )
     long_description = forms.CharField(
-        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor')
+        widget=CKEditorUploadingWidget(config_name='awesome_ckeditor'),
+        label=_('Long Description')
     )
 
 @admin.register(Product)
