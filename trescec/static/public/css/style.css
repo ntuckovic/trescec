@@ -613,8 +613,9 @@ body {
 
 header {
   background-image: url("/static/public/img/cover_fb.jpg");
-  background-size: 100%;
-  background-position: center; }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 #google_map {
   width: 100%;
@@ -626,7 +627,8 @@ hr.star-light:after, hr.star-primary:after {
 
 hr.star-light-hero:after {
   background-image: url("/static/public/img/cover_fb.jpg");
-  background-position: center 59.4%; }
+  background-position: center 59.4%;
+  background-repeat: no-repeat; }
 
 ul.nav {
   font-size: 11px; }
