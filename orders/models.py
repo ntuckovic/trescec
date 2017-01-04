@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+from decimal import Decimal
 
 import time
 import hashlib
@@ -9,6 +10,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django.utils.encoding import python_2_unicode_compatible
+
+from constance import config
 
 
 phone_regex = RegexValidator(regex=r'^\d{9,15}$', message="Phone number must be entered in the format: '999999999'. Up to 15 digits allowed.")
@@ -52,6 +55,12 @@ class ShoppingCart(models.Model):
             total_price += order_item.calculated_price
 
         return total_price
+
+    @property
+    def total_and_delivery_price(self):
+        calculated = Decimal(self.total_price) + Decimal(config.DELIVERY_PRICE)
+
+        return calculated
 
     @classmethod
     def create_new(cls):

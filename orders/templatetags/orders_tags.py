@@ -2,9 +2,13 @@
 
 from __future__ import unicode_literals
 
+from decimal import Decimal
+
 from django import template
 
 from orders.models import ShoppingCart
+
+from constance import config
 
 register = template.Library()
 
@@ -21,3 +25,10 @@ def get_shopping_cart(context):
         ).first()
 
     return shopping_cart
+
+
+@register.simple_tag
+def get_delivery_price():
+    delivery_price = Decimal(config.DELIVERY_PRICE)
+
+    return delivery_price

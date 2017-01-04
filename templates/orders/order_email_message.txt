@@ -1,11 +1,16 @@
 {% load i18n %}
+{% load orders_tags %}
+
 {% trans "Order Details" %}
 {% for order_item in order_items %}
 {% trans "ID:" %} {{ order_item.product.id }} {% trans "Product:" %} {{ order_item.product.name }} {% trans "Unit price:" %} {{ order_item.product.price }}kn
 {% trans "Amount:" %} {{ order_item.amount }}
 {% trans "Price:" %} {{ order_item.calculated_price }}kn
 {% endfor %}
-{% trans "Total:" %} {{ shopping_cart.total_price }}kn
+{% trans "Shopping Cart" %}: {{ shopping_cart.total_price }}kn
+{% get_delivery_price as delivery_price%}
+{% trans "Delivery" %}: {{ delivery_price|floatformat:2 }}kn
+{% trans "Total" %}: {{ shopping_cart.total_and_delivery_price }}kn
 
 {% trans "Contact Details" %}
 {% trans 'Full Name' %}: {{ order.first_name }} {{ order.last_name }}

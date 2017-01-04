@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load orders_tags %}
 
 <div class="row">
     <div class="col-md-12">
@@ -37,10 +38,27 @@
                 {% endfor %}
                 <tr>
                     <td colspan="2" class="text-right">
-                        <h4>{% trans "Total:" %}</h4>
+                        <h5>{% trans "Shopping Cart" %}:</h5>
                     </td>
                     <td>
-                        <h4>{{ shopping_cart.total_price }}kn</h4>
+                        <h5>{{ shopping_cart.total_price }}kn</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right">
+                        <h5>{% trans "Delivery" %}:</h5>
+                    </td>
+                    <td>
+                        {% get_delivery_price as delivery_price%}
+                        <h5>{{ delivery_price|floatformat:2 }}kn</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right">
+                        <h4>{% trans "Total" %}:</h4>
+                    </td>
+                    <td>
+                        <h4>{{ shopping_cart.total_and_delivery_price }}kn</h4>
                     </td>
                 </tr>
             </tbody>

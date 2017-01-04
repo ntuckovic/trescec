@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'flatblocks',
     'rosetta',
+    'constance',
+    'constance.backends.database',
 
     'blogs',
     'core',
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'constance.context_processors.config',
             ],
         },
     },
@@ -250,4 +253,10 @@ SUIT_CONFIG = {
 
     # misc
     # 'LIST_PER_PAGE': 15
+}
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+CONSTANCE_CONFIG = {
+    'DELIVERY_PRICE': (25.00, 'Cijena dostave'),
 }

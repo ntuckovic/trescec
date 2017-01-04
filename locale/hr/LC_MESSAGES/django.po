@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-02 15:14+0100\n"
-"PO-Revision-Date: 2017-01-02 15:16+0122\n"
+"POT-Creation-Date: 2017-01-04 16:27+0100\n"
+"PO-Revision-Date: 2017-01-04 16:27+0122\n"
 "Last-Translator:   <ntuckovic@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -50,7 +50,7 @@ msgstr "Naslovni tekst"
 msgid "Published"
 msgstr "Objavljeno"
 
-#: blogs/models.py:23 orders/models.py:28 orders/models.py:73
+#: blogs/models.py:23 orders/models.py:30 orders/models.py:81
 #: products/models.py:21
 msgid "Created"
 msgstr "Kreirano"
@@ -103,11 +103,13 @@ msgstr "Narudžbe"
 msgid "Order No. {0}"
 msgstr "Narudžba broj:{0}"
 
-#: orders/models.py:30
+#: orders/models.py:32
 msgid "Ordered"
 msgstr "Naručeno"
 
-#: orders/models.py:33 orders/models.py:118 templates/navigation.html:47
+#: orders/models.py:35 orders/models.py:126 templates/navigation.html:47
+#: templates/orders/components/order_detail.html:40
+#: templates/orders/order_email_message.txt:8
 #: templates/orders/order_form.html:12
 #: templates/orders/shoppingcart_detail.html:7
 #: templates/orders/shoppingcart_detail.html:12
@@ -115,76 +117,76 @@ msgstr "Naručeno"
 msgid "Shopping Cart"
 msgstr "Košarica"
 
-#: orders/models.py:34
+#: orders/models.py:36
 msgid "Shopping Carts"
 msgstr "Košarice"
 
-#: orders/models.py:77
+#: orders/models.py:85
 msgid "Finished on"
 msgstr "Završeno na"
 
-#: orders/models.py:79
+#: orders/models.py:87
 msgid "Shipped on"
 msgstr "Otpremljeno na"
 
-#: orders/models.py:80
+#: orders/models.py:88
 msgid "First Name"
 msgstr "Ime"
 
-#: orders/models.py:81
+#: orders/models.py:89
 msgid "Last Name"
 msgstr "Prezime"
 
-#: orders/models.py:82
+#: orders/models.py:90
 msgid "Place"
 msgstr "Mjesto"
 
-#: orders/models.py:83
+#: orders/models.py:91
 msgid "Postal Code"
 msgstr "Poštanski broj"
 
-#: orders/models.py:84
+#: orders/models.py:92
 msgid "Street"
 msgstr "Ulica"
 
-#: orders/models.py:86
+#: orders/models.py:94
 msgid "House Number"
 msgstr "Kućni broj"
 
-#: orders/models.py:87
+#: orders/models.py:95
 msgid "Email"
 msgstr "E-mail adresa"
 
-#: orders/models.py:89
+#: orders/models.py:97
 msgid "Phone Number"
 msgstr "Broj telefona"
 
-#: orders/models.py:92
+#: orders/models.py:100
 msgid "Shop Order"
 msgstr "Shop Narudžba"
 
-#: orders/models.py:93
+#: orders/models.py:101
 msgid "Shop Orders"
 msgstr "Shop Narudžbe"
 
-#: orders/models.py:115
+#: orders/models.py:123
 msgid "Order"
 msgstr "Narudžba"
 
-#: orders/models.py:122 products/models.py:36
+#: orders/models.py:130 products/models.py:36
 msgid "Product"
 msgstr "Proizvod"
 
-#: orders/models.py:123 templates/orders/components/order_detail.html:17
+#: orders/models.py:131 templates/orders/components/order_detail.html:17
 #: templates/orders/shoppingcart_detail.html:56
 msgid "Amount"
 msgstr "Količina"
 
-#: orders/models.py:126
+#: orders/models.py:134
 msgid "Order Item"
 msgstr "Stavka narudžbe"
 
-#: orders/models.py:127
+#: orders/models.py:135
 msgid "Order Items"
 msgstr "Stavke narudžbe"
 
@@ -238,7 +240,7 @@ msgstr "Sljedeća"
 #: templates/contact.html:7 templates/contact.html:10
 #: templates/master.html:100 templates/navigation.html:30
 #: templates/orders/order_email_message.html:29
-#: templates/orders/order_email_message.txt:17
+#: templates/orders/order_email_message.txt:19
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -325,34 +327,40 @@ msgstr "Detalji narudžbe"
 msgid "Product name"
 msgstr "Ime proizvoda"
 
-#: templates/orders/components/order_detail.html:40
-#: templates/orders/order_email_message.txt:8
-msgid "Total:"
-msgstr "Ukupno:"
+#: templates/orders/components/order_detail.html:48
+#: templates/orders/order_email_message.txt:9
+msgid "Delivery"
+msgstr "Dostava"
+
+#: templates/orders/components/order_detail.html:56
+#: templates/orders/order_email_message.txt:10
+#| msgid "Total:"
+msgid "Total"
+msgstr "Ukupno"
 
 #: templates/orders/order_email_message.html:6
-#: templates/orders/order_email_message.txt:10
+#: templates/orders/order_email_message.txt:12
 #: templates/orders/order_form.html:6 templates/orders/order_form.html:39
 msgid "Contact Details"
 msgstr "Kontakt podaci"
 
 #: templates/orders/order_email_message.html:11
-#: templates/orders/order_email_message.txt:11
+#: templates/orders/order_email_message.txt:13
 msgid "Full Name"
 msgstr "Ime i prezime"
 
 #: templates/orders/order_email_message.html:16
-#: templates/orders/order_email_message.txt:13
+#: templates/orders/order_email_message.txt:15
 msgid "Address"
 msgstr "Adresa"
 
 #: templates/orders/order_email_message.html:32
-#: templates/orders/order_email_message.txt:18
+#: templates/orders/order_email_message.txt:20
 msgid "E-mail"
 msgstr "E-mail adresa"
 
 #: templates/orders/order_email_message.html:35
-#: templates/orders/order_email_message.txt:19
+#: templates/orders/order_email_message.txt:21
 msgid "Phone"
 msgstr "Telefonski broj"
 
@@ -418,7 +426,6 @@ msgstr "Natrag na početnu stranicu"
 
 #: templates/orders/shoppingcart_detail.html:39
 #: templates/orders/shoppingcart_detail.html:108
-#| msgid "Proceed to checkout"
 msgctxt "to finish"
 msgid "Proceed to checkout"
 msgstr "Unesi kontaktne podatke i pošalji narudžbu"
