@@ -632,12 +632,20 @@
 	            var existingShoppingCart = Cookies.get('shopping_cart');
 	            data.shopping_cart = existingShoppingCart || false;
 	
-	            _fetch_from_server2.default.post(API_URL.ORDERITEMS_LIST, data, function (data) {
-	                Cookies.set('shopping_cart', data.shopping_cart.hash);
-	                _this2.updateShoppingCartItemsCount(data.shopping_cart.items_count);
-	                _this2.showProductFormSuccessDialog(data);
-	            }, {
-	                "X-CSRFToken": CSRF_TOKEN
+	            _fetch_from_server2.default.post({
+	                url: API_URL.ORDERITEMS_LIST,
+	                data: data,
+	                onSuccess: function onSuccess(data) {
+	                    Cookies.set('shopping_cart', data.shopping_cart.hash);
+	                    _this2.updateShoppingCartItemsCount(data.shopping_cart.items_count);
+	                    _this2.showProductFormSuccessDialog(data);
+	                },
+	                onFail: function onFail(data) {
+	                    console.log(data);
+	                },
+	                headers: {
+	                    "X-CSRFToken": CSRF_TOKEN
+	                }
 	            });
 	        }
 	    }, {
@@ -658,10 +666,15 @@
 	
 	            var orderItemUrl = '' + API_URL.ORDERITEMS_LIST + id + '/';
 	
-	            _fetch_from_server2.default.put(orderItemUrl, data, function (data) {
-	                _this3.updateItemTotalPrice(data);
-	            }, {
-	                "X-CSRFToken": CSRF_TOKEN
+	            _fetch_from_server2.default.put({
+	                url: orderItemUrl,
+	                data: data,
+	                onSuccess: function onSuccess(data) {
+	                    _this3.updateItemTotalPrice(data);
+	                },
+	                headers: {
+	                    "X-CSRFToken": CSRF_TOKEN
+	                }
 	            });
 	        }
 	    }, {
@@ -683,11 +696,15 @@
 	
 	            e.preventDefault();
 	
-	            _fetch_from_server2.default.delete(orderItemUrl, function (data) {
-	                $orderItemTr.remove();
-	                _this4.decreaseShoppingCartItemsCount();
-	            }, {
-	                "X-CSRFToken": CSRF_TOKEN
+	            _fetch_from_server2.default.delete({
+	                url: orderItemUrl,
+	                onSuccess: function onSuccess(data) {
+	                    $orderItemTr.remove();
+	                    _this4.decreaseShoppingCartItemsCount();
+	                },
+	                headers: {
+	                    "X-CSRFToken": CSRF_TOKEN
+	                }
 	            });
 	        }
 	    }, {
@@ -22886,17 +22903,30 @@
 	
 	var fetchFromServer = {
 	    checkStatus: function checkStatus(response) {
+	        var returnObj = {
+	            response: response,
+	            success: false
+	        };
+	
 	        if (response.status >= 200 && response.status < 300) {
-	            return response;
-	        } else {
-	            var error = new Error(response.statusText);
-	            error.response = response;
-	            throw error;
+	            returnObj.success = true;
 	        }
+	
+	        return returnObj;
 	    },
 	
-	    parseJSON: function parseJSON(response) {
-	        return response.json();
+	    parseJSON: function parseJSON(result) {
+	        var returnObj = {
+	            success: result.success
+	        };
+	
+	        if (result.success) {
+	            returnObj.data = result.response.json();
+	        } else {
+	            returnObj.data = result.response;
+	        }
+	
+	        return returnObj;
 	    },
 	
 	    mergeHeaders: function mergeHeaders() {
@@ -22911,8 +22941,32 @@
 	        return headers;
 	    },
 	
+	    handleResult: function handleResult(onSuccess, onFail, result) {
+	        if (result.success) {
+	            if (result.data) {
+	                result.data.then(function (data) {
+	                    onSuccess(data);
+	                });
+	            } else {
+	                onSuccess();
+	            }
+	        } else {
+	            if (onFail) {
+	                if (result.data) {
+	                    result.data.json().then(function (data) {
+	                        onFail(data);
+	                    });
+	                } else {
+	                    onFail();
+	                }
+	            } else {
+	                throw new Error(result.data.statusText);
+	            }
+	        }
+	    },
+	
 	    fetch: function (_fetch) {
-	        function fetch(_x2, _x3) {
+	        function fetch(_x2) {
 	            return _fetch.apply(this, arguments);
 	        }
 	
@@ -22921,52 +22975,52 @@
 	        };
 	
 	        return fetch;
-	    }(function (url, onSuccess) {
+	    }(function (opts) {
 	        _reactNprogress2.default.start();
 	
-	        return fetch(url, {
+	        return fetch(opts.url, {
 	            credentials: 'same-origin'
-	        }).then(fetchFromServer.checkStatus).then(fetchFromServer.parseJSON).then(function (data) {
-	            onSuccess(data);
+	        }).then(fetchFromServer.checkStatus).then(fetchFromServer.parseJSON).then(function (result) {
+	            fetchFromServer.handleResult(opts.onSuccess, opts.onFail, result);
 	
 	            _reactNprogress2.default.done();
 	        });
 	    }),
 	
-	    post: function post(url, data, onSuccess) {
-	        var headers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	        var method = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'POST';
-	
+	    post: function post(opts) {
 	        _reactNprogress2.default.start();
 	
-	        return fetch(url, {
+	        opts.method = opts.method || 'POST';
+	        opts.headers = opts.headers || {};
+	
+	        return fetch(opts.url, {
 	            credentials: 'same-origin',
-	            method: method,
-	            headers: fetchFromServer.mergeHeaders(headers),
-	            body: JSON.stringify(data)
-	        }).then(fetchFromServer.checkStatus).then(fetchFromServer.parseJSON).then(function (data) {
-	            onSuccess(data);
+	            method: opts.method,
+	            headers: fetchFromServer.mergeHeaders(opts.headers),
+	            body: JSON.stringify(opts.data)
+	        }).then(fetchFromServer.checkStatus).then(fetchFromServer.parseJSON).then(function (result) {
+	            fetchFromServer.handleResult(opts.onSuccess, opts.onFail, result);
+	
 	            _reactNprogress2.default.done();
 	        });
 	    },
 	
-	    put: function put(url, data, onSuccess) {
-	        var headers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	    put: function put(opts) {
+	        opts.method = 'PUT';
 	
-	        return fetchFromServer.post(url, data, onSuccess, headers, 'PUT');
+	        return fetchFromServer.post(opts);
 	    },
 	
-	    delete: function _delete(url, onSuccess) {
-	        var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-	
+	    delete: function _delete(opts) {
 	        _reactNprogress2.default.start();
 	
-	        return fetch(url, {
+	        return fetch(opts.url, {
 	            credentials: 'same-origin',
 	            method: 'DELETE',
-	            headers: fetchFromServer.mergeHeaders(headers)
-	        }).then(fetchFromServer.checkStatus).then(function (data) {
-	            onSuccess(data);
+	            headers: fetchFromServer.mergeHeaders(opts.headers)
+	        }).then(fetchFromServer.checkStatus).then(function (result) {
+	            fetchFromServer.handleResult(opts.onSuccess, opts.onFail, result);
+	
 	            _reactNprogress2.default.done();
 	        });
 	    }

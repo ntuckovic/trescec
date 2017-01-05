@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 
 from rest_framework import serializers
 
+from django.utils.translation import ugettext as _
+
 from products.api.serializers import LightProductSerializer
 from ..models import OrderItem, ShoppingCart
 
@@ -71,6 +73,17 @@ class WriteOrderItemSerializer(OrderItemSerializer):
         kwargs['partial'] = True
 
         super(WriteOrderItemSerializer, self).__init__(*args, **kwargs)
+
+    def validate(self, data):
+        product = data.get('product')
+
+        if product is not None:
+            if product.available is False or product.active is False:
+                raise serializers.ValidationError(
+                    _('This product can not be added to shopping cart')
+                )
+
+        return data
 
     def create(self, validated_data):
         existing_order_item = OrderItem.objects.filter(

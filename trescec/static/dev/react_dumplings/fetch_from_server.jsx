@@ -16,17 +16,30 @@ import NProgress from 'react-nprogress';
 
 const fetchFromServer = {
     checkStatus: (response) => {
+        let returnObj = {
+            response: response,
+            success: false
+        };
+
         if (response.status >= 200 && response.status < 300) {
-            return response
-        } else {
-            let error = new Error(response.statusText)
-            error.response = response
-            throw error
+            returnObj.success = true
         }
+
+        return returnObj
     },
 
-    parseJSON: (response) => {
-        return response.json()
+    parseJSON: (result) => {
+        let returnObj = {
+            success: result.success
+        }
+
+        if (result.success) {
+            returnObj.data = result.response.json()
+        } else {
+            returnObj.data = result.response
+        }
+
+        return returnObj
     },
 
     mergeHeaders: (headers={}) => {
@@ -39,54 +52,85 @@ const fetchFromServer = {
         return headers;
     },
 
-    fetch: (url, onSuccess) => {
+    handleResult: (onSuccess, onFail, result) => {
+        if (result.success) {
+            if (result.data) {
+                result.data.then((data) => {
+                    onSuccess(data)
+                })
+            } else {
+                onSuccess()
+            }
+        } else {
+            if (onFail) {
+                if (result.data) {
+                    result.data.json().then((data) => {
+                        onFail(data)
+                    })
+                } else {
+                    onFail()
+                }
+            } else {
+                throw new Error(result.data.statusText)
+            }
+        }
+    },
+
+    fetch: (opts) => {
         NProgress.start();
 
-        return fetch(url, {
+        return fetch(opts.url, {
               credentials: 'same-origin'
             })
             .then(fetchFromServer.checkStatus)
             .then(fetchFromServer.parseJSON)
-            .then(function(data) {
-                onSuccess(data);
+            .then((result) => {
+                fetchFromServer.handleResult(opts.onSuccess, opts.onFail, result)
 
                 NProgress.done();
             })
     },
 
-    post: (url, data, onSuccess, headers={}, method='POST') => {
+    post: (opts) => {
         NProgress.start();
 
-        return fetch(url, {
+        opts.method = opts.method || 'POST'
+        opts.headers = opts.headers || {}
+
+        return fetch(opts.url, {
               credentials: 'same-origin',
-              method: method,
-              headers: fetchFromServer.mergeHeaders(headers),
-              body: JSON.stringify(data)
+              method: opts.method,
+              headers: fetchFromServer.mergeHeaders(opts.headers),
+              body: JSON.stringify(opts.data)
             })
             .then(fetchFromServer.checkStatus)
             .then(fetchFromServer.parseJSON)
-            .then(function(data) {
-                onSuccess(data);
-                NProgress.done();
+            .then((result) => {
+                fetchFromServer.handleResult(opts.onSuccess, opts.onFail, result)
+
+                NProgress.done()
             })
     },
 
-    put: (url, data, onSuccess, headers={}) => {
-        return fetchFromServer.post(url, data, onSuccess, headers, 'PUT');
+    put: (opts) => {
+        opts.method = 'PUT'
+
+        return fetchFromServer.post(opts);
     },
 
-    delete: (url, onSuccess, headers={}) => {
+    delete: (opts) => {
         NProgress.start();
 
-        return fetch(url, {
+        return fetch(opts.url, {
           credentials: 'same-origin',
           method: 'DELETE',
-          headers: fetchFromServer.mergeHeaders(headers)
+          headers: fetchFromServer.mergeHeaders(opts.headers)
         })
         .then(fetchFromServer.checkStatus)
-        .then(function(data) {
-            onSuccess(data);
-            NProgress.done();
+        .then((result) => {
+            fetchFromServer.handleResult(opts.onSuccess, opts.onFail, result)
+
+            NProgress.done()
         });
     },
 };

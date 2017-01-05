@@ -86,12 +86,20 @@ class App extends React.Component {
         const existingShoppingCart = Cookies.get('shopping_cart');
         data.shopping_cart = existingShoppingCart || false;
 
-        fetchFromServer.post(API_URL.ORDERITEMS_LIST, data, (data) => {
-            Cookies.set('shopping_cart', data.shopping_cart.hash);
-            this.updateShoppingCartItemsCount(data.shopping_cart.items_count)
-            this.showProductFormSuccessDialog(data)
-        }, {
-            "X-CSRFToken": CSRF_TOKEN
+        fetchFromServer.post({
+            url:API_URL.ORDERITEMS_LIST,
+            data: data,
+            onSuccess: (data) => {
+                Cookies.set('shopping_cart', data.shopping_cart.hash);
+                this.updateShoppingCartItemsCount(data.shopping_cart.items_count)
+                this.showProductFormSuccessDialog(data)
+            },
+            onFail: (data) => {
+                console.log(data)
+            },
+            headers: {
+                "X-CSRFToken": CSRF_TOKEN
+            }
         });
     }
 
@@ -108,10 +116,15 @@ class App extends React.Component {
     submitOrderItemForm (data, id) {
         const orderItemUrl = `${API_URL.ORDERITEMS_LIST}${id}/`;
 
-        fetchFromServer.put(orderItemUrl, data, (data) => {
-            this.updateItemTotalPrice(data);
-        }, {
-            "X-CSRFToken": CSRF_TOKEN
+        fetchFromServer.put({
+            url: orderItemUrl,
+            data: data,
+            onSuccess: (data) => {
+                this.updateItemTotalPrice(data);
+            },
+            headers: {
+                "X-CSRFToken": CSRF_TOKEN
+            }
         });
     }
 
@@ -129,11 +142,15 @@ class App extends React.Component {
 
         e.preventDefault();
 
-        fetchFromServer.delete(orderItemUrl, (data) => {
-            $orderItemTr.remove()
-            this.decreaseShoppingCartItemsCount()
-        }, {
-            "X-CSRFToken": CSRF_TOKEN
+        fetchFromServer.delete({
+            url: orderItemUrl,
+            onSuccess: (data) => {
+                $orderItemTr.remove()
+                this.decreaseShoppingCartItemsCount()
+            },
+            headers: {
+                "X-CSRFToken": CSRF_TOKEN
+            }
         });
     }
 

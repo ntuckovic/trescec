@@ -21,17 +21,22 @@ class PageForm(forms.ModelForm):
         label=_('Long Description')
     )
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     form = PageForm
     search_fields = ['name']
     product_thumbnail = AdminThumbnail(image_field='thumbnail')
-    list_display = ['name', 'product_thumbnail', 'price', 'active']
+    list_display = [
+        'name', 'product_thumbnail', 'price', 'active', 'available', 'ordering'
+    ]
     image_display = AdminThumbnail(image_field='image')
     image_display.short_description = _('Image')
     readonly_fields = ['image_display', 'created', 'modified']
     fields = (
+        'ordering',
         'active',
+        'available',
         'name',
         'price',
         'short_description',
