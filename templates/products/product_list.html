@@ -38,7 +38,16 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <a href="{% url 'products:product_detail' product.id %}">
-                                                                <h4 class="list-group-item-heading">{{ product.name }}</h4>
+                                                                <h4 class="list-group-item-heading">
+                                                                    {{ product.name }}
+                                                                    {% if not product.available %}
+                                                                        <small>
+                                                                            <span class="label label-danger product-label">
+                                                                                {% trans "Currently not available!" %}
+                                                                            </span>
+                                                                        </small>
+                                                                    {% endif %}
+                                                                </h4>
                                                             </a>
                                                         </div>
                                                     </div>

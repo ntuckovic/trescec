@@ -654,4 +654,7 @@ section.success table {
 p, .bootbox-body {
   font-size: 16px; }
 
+.product-label {
+  vertical-align: super; }
+
 /*# sourceMappingURL=style.css.map*/
