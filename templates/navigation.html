@@ -9,7 +9,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="{% if nav_item != 'home' %}{% url 'home' %}{% endif%}#page-top"><i class="fa fa-leaf" aria-hidden="true"></i> OPG Treščec</a>
+            <a class="navbar-brand" href="{% if nav_item != 'home' %}{% url 'home' %}{% endif%}#page-top"><i class="fa fa-leaf" aria-hidden="true"></i> {{ config.SITE_NAME }}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

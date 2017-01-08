@@ -141,7 +141,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
     'awesome_ckeditor': {
-        'fontSize_sizes': '8/8px;9/9px;10/10px;11/11px;12/12px;14/14px;16/16px;18/18px;20/20px;22/22px;24/24px;26/26px;28/28px;36/36px;48/48px;72/72px',
+        'fontSize_sizes': '8/8px;9/9px;10/10px;11/11px;12/12px;14/14px;16/16px;18/18px;20/20px;22/22px;24/24px;26/26px;28/28px;36/36px;48/48px;56/56px;60/60px;72/72px',
         'width': '100%',
         'toolbar': 'full',
         'startupFocus': True,
@@ -258,5 +258,6 @@ SUIT_CONFIG = {
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
+    'SITE_NAME': ('ARONIJA TREŠČEC', 'Naziv Stranice'),
     'DELIVERY_PRICE': (25.00, 'Cijena dostave'),
 }

@@ -10,7 +10,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>OPG Treščec {% block title_extra %}{% endblock title_extra %}</title>
+        <title>{{ config.SITE_NAME }} {% block title_extra %}{% endblock title_extra %}</title>
 
         {% block extra_meta %}
 
@@ -123,7 +123,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            Copyright &copy; OPG Treščec 2017
+                            Copyright &copy; {{ config.SITE_NAME }} 2017
                         </div>
                     </div>
                 </div>
