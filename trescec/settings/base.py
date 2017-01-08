@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from collections import OrderedDict
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -40,9 +41,10 @@ INSTALLED_APPS = [
 
     'blogs',
     'core',
+    'galleries',
+    'flatpages_override',
     'orders',
     'products',
-    'flatpages_override'
 ]
 
 MIDDLEWARE = [
@@ -257,7 +259,9 @@ SUIT_CONFIG = {
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
-CONSTANCE_CONFIG = {
-    'SITE_NAME': ('ARONIJA TREŠČEC', 'Naziv Stranice'),
-    'DELIVERY_PRICE': (25.00, 'Cijena dostave'),
-}
+CONSTANCE_CONFIG = OrderedDict([
+    ('SITE_NAME', ('ARONIJA TREŠČEC', 'Naziv Stranice')),
+    ('DELIVERY_PRICE', (25.00, 'Cijena dostave')),
+    ('SET_DEFAULT_GALLERY', (True, 'Postavljaj defaultnu galeriju na zapis slike')),
+    ('DEFAULT_GALLERY_NAME', ('Glavna', 'Ime defaultne galerije')),
+])
