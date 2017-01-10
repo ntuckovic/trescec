@@ -553,6 +553,7 @@
 	
 	        _this.submitProductForm = _this.submitProductForm.bind(_this);
 	        _this.submitOrderItemForm = _this.submitOrderItemForm.bind(_this);
+	        _this.showGalleryItemModal = _this.showGalleryItemModal.bind(_this);
 	        return _this;
 	    }
 	
@@ -560,15 +561,17 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            window.addEventListener('submit', this.submitForm);
-	            $(".js-update-item").on('change', this.updateOrderItem);
+	            $('.js-update-item').on('change', this.updateOrderItem);
 	            $('.js-delete-order-item').on('click', this.deleteOrderItemClicked);
+	            $('.js-gallery-thumb').on('click', this.showGalleryItemModal);
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            window.removeEventListener('submit', this.submitForm);
-	            $(".js-update-item").off('change');
+	            $('.js-update-item').off('change');
 	            $('.js-delete-order-item').off('click');
+	            $('.js-gallery-thumb').off('click');
 	        }
 	    }, {
 	        key: 'submitForm',
@@ -705,6 +708,19 @@
 	                headers: {
 	                    "X-CSRFToken": CSRF_TOKEN
 	                }
+	            });
+	        }
+	    }, {
+	        key: 'showGalleryItemModal',
+	        value: function showGalleryItemModal(e) {
+	            var $originalItem = $(e.currentTarget);
+	            var originalItemUrl = $(e.currentTarget).data('original-url');
+	            var originalItemTitle = $(e.currentTarget).attr('title');
+	
+	            bootbox.dialog({
+	                size: 'large',
+	                message: '<h4>' + originalItemTitle + '</h4>' + ('<img src="' + originalItemUrl + '" class="img-responsive" alt="{{ item.title }}" title="{{ item.title }}">'),
+	                closeButton: true
 	            });
 	        }
 	    }, {

@@ -4,7 +4,11 @@
 {% load i18n %}
 {% load bootstrap %}
 {% load flatblocks %}
+{% load imagekit %}
+
+{% load core_tags %}
 {% load orders_tags %}
+{% load galleries_tags %}
 
 {% block hero %}
 <!-- Header -->
@@ -41,21 +45,24 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <a href="{% url 'products:product_list' %}" class="btn btn-lg btn-outline mb30">
+                <a href="{% url 'products:product_list' %}" class="btn btn-lg btn-outline mb15">
                     <i class="fa fa-gift" aria-hidden="true"></i> {% trans "Buy aronia products" %}
                 </a>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 portfolio-item">
-                <img src="{% static "public/img/working.jpg" %}" class="img-responsive" alt="">
-            </div>
-            <div class="col-sm-4 portfolio-item">
-                <img src="{% static "public/img/jars.jpg" %}" class="img-responsive" alt="">
-            </div>
-            <div class="col-sm-4 portfolio-item">
-                <img src="{% static "public/img/official_shirts_back.jpg" %}" class="img-responsive" alt="">
-            </div>
+            {% get_gallery_by_name "Glavna" as main_gallery %}
+
+            {% if main_gallery %}
+                {% for item in main_gallery.items %}
+                    <div class="col-sm-4 portfolio-item mb15 mt15">
+                        {% generateimage 'great_thumbnail_fit' source=item.image as gallery_image %}
+                        {% get_thumbnail_url gallery_image as gallery_image_url %}
+
+                        <img src="{{ gallery_image_url }}" class="img-responsive js-gallery-thumb" alt="{{ item.title }}" title="{{ item.title }}" data-original-url="{{ item.image.url }}">
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </section>
@@ -107,6 +114,7 @@
 {% endblock sections %}
 
 {% block appscript %}
+    {{ block.super }}
     <script>
       function initMap() {
         var uluru = {lat: 46.127, lng: 16.783};

@@ -18,18 +18,21 @@ class App extends React.Component {
 
       this.submitProductForm = this.submitProductForm.bind(this);
       this.submitOrderItemForm = this.submitOrderItemForm.bind(this);
+      this.showGalleryItemModal = this.showGalleryItemModal.bind(this);
     }
 
     componentDidMount () {
         window.addEventListener('submit', this.submitForm);
-        $(".js-update-item").on('change', this.updateOrderItem);
+        $('.js-update-item').on('change', this.updateOrderItem);
         $('.js-delete-order-item').on('click', this.deleteOrderItemClicked);
+        $('.js-gallery-thumb').on('click', this.showGalleryItemModal)
     }
 
     componentWillUnmount () {
         window.removeEventListener('submit', this.submitForm);
-        $(".js-update-item").off('change');
+        $('.js-update-item').off('change');
         $('.js-delete-order-item').off('click');
+        $('.js-gallery-thumb').off('click')
     }
 
     submitForm (e) {
@@ -151,6 +154,19 @@ class App extends React.Component {
             headers: {
                 "X-CSRFToken": CSRF_TOKEN
             }
+        });
+    }
+
+    showGalleryItemModal (e) {
+        let $originalItem = $(e.currentTarget)
+        let originalItemUrl = $(e.currentTarget).data('original-url')
+        let originalItemTitle = $(e.currentTarget).attr('title')
+
+        bootbox.dialog({
+            size: 'large',
+            message: `<h4>${originalItemTitle}</h4>`+
+                     `<img src="${originalItemUrl}" class="img-responsive" alt="{{ item.title }}" title="{{ item.title }}">`,
+            closeButton: true
         });
     }
 
