@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-05 17:20+0100\n"
-"PO-Revision-Date: 2017-01-05 17:22+0122\n"
+"POT-Creation-Date: 2017-01-10 16:03+0100\n"
+"PO-Revision-Date: 2017-01-10 16:04+0122\n"
 "Last-Translator:   <ntuckovic@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -28,7 +28,8 @@ msgstr "Sadržaj"
 msgid "Lead text"
 msgstr "Naslovni tekst"
 
-#: blogs/admin.py:31 blogs/models.py:30 products/admin.py:34
+#: blogs/admin.py:31 blogs/models.py:30 galleries/admin.py:61
+#: galleries/models.py:45 galleries/models.py:56 products/admin.py:34
 #: products/models.py:21 templates/orders/shoppingcart_detail.html:50
 msgid "Image"
 msgstr "Slika"
@@ -37,7 +38,7 @@ msgstr "Slika"
 msgid "Blogs"
 msgstr "Blog"
 
-#: blogs/models.py:18
+#: blogs/models.py:18 galleries/models.py:43
 msgid "Title"
 msgstr "Naslov"
 
@@ -50,8 +51,8 @@ msgstr "Naslovni tekst"
 msgid "Published"
 msgstr "Objavljeno"
 
-#: blogs/models.py:23 orders/models.py:31 orders/models.py:82
-#: products/models.py:23
+#: blogs/models.py:23 galleries/models.py:17 galleries/models.py:41
+#: orders/models.py:31 orders/models.py:82 products/models.py:23
 msgid "Created"
 msgstr "Kreirano"
 
@@ -93,6 +94,36 @@ msgstr "Forma za kontant {0}"
 #: flatpages_override/admin.py:28
 msgid "Advanced options"
 msgstr "Napredne postavke"
+
+#: galleries/admin.py:22
+#| msgid "Previous"
+msgid "Preview"
+msgstr "Prikaz"
+
+#: galleries/admin.py:50
+msgid "Items Count"
+msgstr "Broj stavki"
+
+#: galleries/models.py:18 products/models.py:18
+msgid "Name"
+msgstr "Naziv"
+
+#: galleries/models.py:21 galleries/models.py:49
+msgid "Gallery"
+msgstr "Galerija"
+
+#: galleries/models.py:22
+msgid "Galleries"
+msgstr "Galerije"
+
+#: galleries/models.py:47 products/models.py:17
+msgid "Ordering"
+msgstr "Poredak"
+
+#: galleries/models.py:57
+#| msgid "Image"
+msgid "Images"
+msgstr "Slike"
 
 #: orders/api/serializers.py:83
 msgid "This product can not be added to shopping cart"
@@ -210,15 +241,6 @@ msgstr "Detaljan opis"
 msgid "Products"
 msgstr "Proizvodi"
 
-#: products/models.py:17
-#| msgid "Order"
-msgid "Ordering"
-msgstr "Poredak"
-
-#: products/models.py:18
-msgid "Name"
-msgstr "Naziv"
-
 #: products/models.py:26 templates/orders/components/order_detail.html:21
 #: templates/orders/shoppingcart_detail.html:59
 msgid "Price"
@@ -265,7 +287,7 @@ msgstr "Informacije za kontakt"
 msgid "Contact Form"
 msgstr "Kontaktna forma"
 
-#: templates/contact.html:37 templates/homepage.html:94
+#: templates/contact.html:37 templates/homepage.html:101
 msgid "Send"
 msgstr "Pošalji"
 
@@ -285,15 +307,15 @@ msgstr "Idi na proizvode"
 msgid "Contact email from web shop"
 msgstr "E-mail poruka iz web shopa"
 
-#: templates/homepage.html:33
+#: templates/homepage.html:37
 msgid "About"
 msgstr "O nama"
 
-#: templates/homepage.html:45
+#: templates/homepage.html:49
 msgid "Buy aronia products"
 msgstr "Kupi proizvode od aronije"
 
-#: templates/homepage.html:67
+#: templates/homepage.html:74
 msgid "Contact Us"
 msgstr "Kontaktiraj nas"
 
@@ -390,13 +412,13 @@ msgstr "Cijena jedinice:"
 
 #: templates/orders/order_email_message.txt:7
 #: templates/products/components/add_to_cart.html:14
-#: templates/products/product_list.html:72
+#: templates/products/product_list.html:74
 msgid "Amount:"
 msgstr "Količina:"
 
 #: templates/orders/order_email_message.txt:8
 #: templates/products/components/add_to_cart.html:6
-#: templates/products/product_list.html:64
+#: templates/products/product_list.html:66
 msgid "Price:"
 msgstr "Cijena:"
 
@@ -461,20 +483,20 @@ msgstr ""
 
 #: templates/products/components/add_to_cart.html:31
 #: templates/products/components/add_to_cart.html:36
-#: templates/products/product_list.html:92
-#: templates/products/product_list.html:97
+#: templates/products/product_list.html:94
+#: templates/products/product_list.html:99
 msgid "Add to cart"
 msgstr "Dodaj u košaricu"
 
 #: templates/products/product_detail.html:33
-#: templates/products/product_list.html:46
+#: templates/products/product_list.html:51
 msgid "Currently not available!"
 msgstr "Trenutno nedostupno!"
 
-#: templates/products/product_list.html:106
+#: templates/products/product_list.html:108
 msgid "More about product"
 msgstr "Više o proizvodu"
 
-#: templates/products/product_list.html:116
+#: templates/products/product_list.html:118
 msgid "No available products!"
 msgstr "Nema raspoloživih proizvoda"
