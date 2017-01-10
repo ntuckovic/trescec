@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="row">
-            {% get_gallery_by_name "Glavna" as main_gallery %}
+            {% get_gallery_by_name config.DEFAULT_GALLERY_NAME as main_gallery %}
 
             {% if main_gallery %}
                 {% for item in main_gallery.items %}
