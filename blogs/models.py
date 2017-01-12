@@ -36,6 +36,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = _('Post')
         verbose_name_plural = _('Posts')
+        ordering = ['-id']
 
     def __str__(self):
         return self.title
