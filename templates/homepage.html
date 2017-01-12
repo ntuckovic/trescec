@@ -9,6 +9,7 @@
 {% load core_tags %}
 {% load orders_tags %}
 {% load galleries_tags %}
+{% load blogs_tags %}
 
 {% block hero %}
 <!-- Header -->
@@ -48,6 +49,34 @@
                 <a href="{% url 'products:product_list' %}" class="btn btn-lg btn-outline mb15">
                     <i class="fa fa-gift" aria-hidden="true"></i> {% trans "Buy aronia products" %}
                 </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center mb15 mt15 posts-list">
+                {% get_last_n_posts config.NUMBER_OF_POSTS_ON_HOMEPAGE as last_posts %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for post in last_posts.posts %}
+                        <h4>
+                            <a href="{% url 'blogs:post_detail' post.id %}" class="title-link">{{ post.title }}</a> -
+                            <a href="{% url 'blogs:post_detail' post.id %}" class="more-link">
+                                {% trans 'read more...' %}
+                            </a>
+                        </h4>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if last_posts.count > config.NUMBER_OF_POSTS_ON_HOMEPAGE %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>
+                                <a href="{% url 'blogs:post_list' %}" class="btn btn-link">
+                                    <span class="glyphicon glyphicon-comment"></span>  {% trans 'See other posts' %}
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="row">

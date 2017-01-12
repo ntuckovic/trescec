@@ -264,4 +264,5 @@ CONSTANCE_CONFIG = OrderedDict([
     ('DELIVERY_PRICE', (25.00, 'Cijena dostave')),
     ('SET_DEFAULT_GALLERY', (True, 'Postavljaj defaultnu galeriju na zapis slike')),
     ('DEFAULT_GALLERY_NAME', ('Glavna', 'Ime defaultne galerije')),
+    ('NUMBER_OF_POSTS_ON_HOMEPAGE', (1, 'Broj vijesti na početnoj stranici')),
 ])

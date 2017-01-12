@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-10 16:03+0100\n"
-"PO-Revision-Date: 2017-01-10 16:04+0122\n"
+"POT-Creation-Date: 2017-01-12 16:59+0100\n"
+"PO-Revision-Date: 2017-01-12 16:59+0122\n"
 "Last-Translator:   <ntuckovic@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -96,7 +96,6 @@ msgid "Advanced options"
 msgstr "Napredne postavke"
 
 #: galleries/admin.py:22
-#| msgid "Previous"
 msgid "Preview"
 msgstr "Prikaz"
 
@@ -121,7 +120,6 @@ msgid "Ordering"
 msgstr "Poredak"
 
 #: galleries/models.py:57
-#| msgid "Image"
 msgid "Images"
 msgstr "Slike"
 
@@ -287,7 +285,7 @@ msgstr "Informacije za kontakt"
 msgid "Contact Form"
 msgstr "Kontaktna forma"
 
-#: templates/contact.html:37 templates/homepage.html:101
+#: templates/contact.html:37 templates/homepage.html:130
 msgid "Send"
 msgstr "Pošalji"
 
@@ -307,15 +305,24 @@ msgstr "Idi na proizvode"
 msgid "Contact email from web shop"
 msgstr "E-mail poruka iz web shopa"
 
-#: templates/homepage.html:37
+#: templates/homepage.html:38
 msgid "About"
 msgstr "O nama"
 
-#: templates/homepage.html:49
+#: templates/homepage.html:50
 msgid "Buy aronia products"
 msgstr "Kupi proizvode od aronije"
 
+#: templates/homepage.html:63
+#| msgid "read more"
+msgid "read more..."
+msgstr "pročitaj više..."
+
 #: templates/homepage.html:74
+msgid "See other posts"
+msgstr "Vidi ostale vijesti"
+
+#: templates/homepage.html:103
 msgid "Contact Us"
 msgstr "Kontaktiraj nas"
 

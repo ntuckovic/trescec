@@ -658,4 +658,17 @@ p, .bootbox-body {
   font-size: 14px;
   vertical-align: super; }
 
+.posts-list a {
+  color: #FFF;
+  text-transform: initial; }
+
+.posts-list a:hover {
+  color: #2C3E50; }
+
+.posts-list a.title-link {
+  text-transform: uppercase; }
+
+.posts-list a.more-link {
+  font-size: 14px !important; }
+
 /*# sourceMappingURL=style.css.map*/
