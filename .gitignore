@@ -5,3 +5,4 @@ trescec/static/dev/node_modules
 dev.py
 secret.py
 production_daddy.py
+heroku_dumps/*
