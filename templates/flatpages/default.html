@@ -5,5 +5,25 @@
 {% block title_extra %} | {{ flatpage.title }}{% endblock title_extra %}
 
 {% block main %}
-    {{ flatpage.content }}
+<section class="success pt30" id="flatpage">
+    <div class="container">
+
+        <div class="col-lg-12 text-center">
+            <h2>{% trans "Ljekovitost aronije" %}</h2>
+            <hr class="star-light">
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="list-group-item list-group-item-text">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ flatpage.content }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock main %}

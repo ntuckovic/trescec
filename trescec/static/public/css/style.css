@@ -671,4 +671,16 @@ p, .bootbox-body {
 .posts-list a.more-link {
   font-size: 14px !important; }
 
+@media (min-width: 768px) {
+  .navbar-custom .navbar-brand {
+    font-size: 18px; }
+  .navbar-custom.affix .navbar-brand {
+    font-size: 14px; }
+  ul.nav {
+    font-size: 9px; } }
+
+@media (min-width: 990px) {
+  ul.nav {
+    font-size: 11px; } }
+
 /*# sourceMappingURL=style.css.map*/

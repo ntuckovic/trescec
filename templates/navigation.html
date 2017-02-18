@@ -30,9 +30,9 @@
                         <span class="glyphicon glyphicon-envelope"></span> {% trans "Contact" %}
                     </a>
                 </li>
-                <li class="page-scroll {% if nav_item == 'blog' %}active{% endif %}">
-                    <a href="{% url 'blogs:post_list' %}">
-                        <span class="glyphicon glyphicon-comment"></span> {% trans "Posts" %}
+                <li class="page-scroll {% if request.path_info == '/ljekovitost-aronije/' %}active{% endif %}">
+                    <a href="{% url 'flatpages:ljekovitost-aronije' %}">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> {% trans "Ljekovitost aronije" %}
                     </a>
                 </li>
                 <li class="page-scroll {% if nav_item == 'product' %}active{% endif %}">

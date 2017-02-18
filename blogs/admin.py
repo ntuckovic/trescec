@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
     )
 
 
-@admin.register(Post)
+# @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     form = PostForm
     search_fields = ['title']
