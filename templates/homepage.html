@@ -9,7 +9,7 @@
 {% load core_tags %}
 {% load orders_tags %}
 {% load galleries_tags %}
-{% load blogs_tags %}
+{#% load blogs_tags %#}
 
 {% block hero %}
 <!-- Header -->
@@ -51,7 +51,8 @@
                 </a>
             </div>
         </div>
-        <div class="row">
+        {% comment %}
+        <!-- <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center mb15 mt15 posts-list">
                 {% get_last_n_posts config.NUMBER_OF_POSTS_ON_HOMEPAGE as last_posts %}
                 <div class="row">
@@ -78,7 +79,8 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
+        </div> -->
+        {% endcomment %}
         <div class="row">
             {% get_gallery_by_name config.DEFAULT_GALLERY_NAME as main_gallery %}
 
