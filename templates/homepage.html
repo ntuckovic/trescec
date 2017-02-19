@@ -88,9 +88,9 @@
                 {% for item in main_gallery.items %}
                     <div class="col-sm-4 portfolio-item mb15 mt15">
                         {% generateimage 'great_thumbnail_fit' source=item.image as gallery_image %}
-                        {% get_thumbnail_url gallery_image as gallery_image_url %}
+                        {#% get_thumbnail_url gallery_image as gallery_image_url %#}
 
-                        <img src="{{ gallery_image_url }}" class="img-responsive js-gallery-thumb" alt="{{ item.title }}" title="{{ item.title }}" data-original-url="{{ item.image.url }}">
+                        <img src="{{ gallery_image.url }}" class="img-responsive js-gallery-thumb" alt="{{ item.title }}" title="{{ item.title }}" data-original-url="{{ item.image.url }}">
                     </div>
                 {% endfor %}
             {% endif %}
