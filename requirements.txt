@@ -16,7 +16,7 @@ django-rosetta==0.7.12
 django-storages==1.5.1
 django-suit==0.2.21
 django-suit-ckeditor==0.0.2
-djangorestframework==3.5.3
+djangorestframework==3.9.1
 dropbox==7.1.1
 gunicorn==19.6.0
 Markdown==2.6.7
